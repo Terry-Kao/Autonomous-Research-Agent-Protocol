@@ -45,22 +45,22 @@
     {
       "path": "control/GATES.json",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "b5e9fad839e5d94904533f93ec22131e8c673cc997e0d39cff996cb113650ff7",
-      "size_bytes": 1580,
+      "sha256": "798506a374f15a0813968dc79acddc355caae12f605160ea977d543fbb2028a7",
+      "size_bytes": 1777,
       "status": "CURRENT"
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "v0.1.0-alpha authorization and release evidence",
-      "sha256": "2d9c212bf78063fe488c7d494777a0f4503f6a5b65ec5f4619399f9b961b3917",
-      "size_bytes": 3685,
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "dd7fd5d0c8225d6b944e9ed04a5a1c0ef96ceb4861bde8091964e1895db1abbd",
+      "size_bytes": 4431,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "v0.1.0-alpha authorization and release evidence",
-      "sha256": "9c3f2acf76f836ff1fd219000b07181945fee7da7cdb1dbc7c0a4ee4ae5e3398",
-      "size_bytes": 372,
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "68331df35c890933100e9ddfaa8b382befc9549d2978a367710685f937163d17",
+      "size_bytes": 368,
       "status": "CURRENT"
     },
     {
@@ -73,8 +73,8 @@
     {
       "path": "docs/INDEPENDENT_RELEASE_REVIEW.md",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "ef131380888f18b172eddd4578521d19287dfac42fabadb25ba42f8f3f075d23",
-      "size_bytes": 4782,
+      "sha256": "e5676bd97e76004fa257a78ba95c3b2056b1696fc80189b11f71bed01ab47006",
+      "size_bytes": 6339,
       "status": "CURRENT"
     },
     {
@@ -101,7 +101,7 @@
     {
       "path": "pyproject.toml",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "2a0010af12c1727f779ddb1c93f050bcb258d7f4b60071e7fed10d6f61fe2b05",
+      "sha256": "7f89943b2766dfb0ac854b8c96844157743c193a4956f59357e0289973e560da",
       "size_bytes": 1058,
       "status": "CURRENT"
     },
@@ -120,6 +120,13 @@
       "status": "CURRENT"
     },
     {
+      "path": "src/arap/__init__.py",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "bcf0ca7f7fc5be566f0b120cdfe1c595b6f6b40eaa7e1077f8959aba6ee20587",
+      "size_bytes": 68,
+      "status": "CURRENT"
+    },
+    {
       "path": "src/arap/cli.py",
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "ced7a5fbd310a646e73c2f08a289a830a7846235fc93af269a46a72af4dcf032",
@@ -129,17 +136,17 @@
     {
       "path": "src/arap/core.py",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "96d92fe80b4b6f43ebe4bfb75aea19102bccc9b7e45393137aea7a84dcfc4cac",
-      "size_bytes": 8822,
+      "sha256": "67a395c55e4b80ef8816a500849adb4782cdcb2e4b501b5a8b39acfbb6c5b04e",
+      "size_bytes": 9304,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "9ffa49fd6a281e38f8d185890aa69561016cb55ef65d8d22ebde71dfa0e1cf69",
-      "size_bytes": 4288,
+      "sha256": "e5e1bc726f4e7f2fc59fb0478eaa8130ab7c9b36f58f85ef7af57cd973ba66f5",
+      "size_bytes": 6040,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T17:32:31+00:00"
+  "updated_at": "2026-10-17T17:33:34+00:00"
 }

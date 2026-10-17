@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 
+import arap
 from arap.cli import init_project
 from arap.cli import main
 from arap.core import evaluate_gates, index_artifacts, load_json, sha256_file, validate_project
@@ -112,4 +113,48 @@ def test_gate_output_cannot_escape_project(tmp_path: Path) -> None:
     init_project(root)
     assert main(["gate", str(root), "--reviewer", "reviewer", "--output", str(tmp_path / "outside.json")]) == 2
     assert not (tmp_path / "outside.json").exists()
+
+
+@pytest.mark.parametrize("field,value", [("id", []), ("status", {})])
+def test_nested_gate_types_return_validation_errors(tmp_path: Path, field: str, value: object) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    path = root / "control/GATES.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["gates"][0][field] = value
+    path.write_text(json.dumps(data), encoding="utf-8")
+    errors = validate_project(root)
+    assert errors
+    assert any(field in error for error in errors)
+
+
+def test_plain_http_external_evidence_is_rejected(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    path = root / "control/GATES.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["gates"][0]["evidence"] = ["http://example.test/result.json"]
+    path.write_text(json.dumps(data), encoding="utf-8")
+    assert any("must use https" in error for error in validate_project(root))
+
+
+def test_resolution_loop_becomes_validation_error(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/loop"
+    artifact.write_text("loop", encoding="utf-8")
+    index_artifacts(root, [Path("evidence/loop")])
+    original_resolve = Path.resolve
+
+    def fail_loop(path: Path, *args: object, **kwargs: object) -> Path:
+        if path.name == "loop":
+            raise RuntimeError("symlink loop")
+        return original_resolve(path, *args, **kwargs)
+
+    monkeypatch.setattr(Path, "resolve", fail_loop)
+    assert any("could not be resolved safely" in error for error in validate_project(root))
+
+
+def test_runtime_version_matches_alpha_metadata() -> None:
+    assert arap.__version__ == "0.1.0a1"
 

@@ -54,3 +54,19 @@ The maintainer-release-authorization gate intentionally remains `PENDING` until 
 - Successful GitHub Actions run: `39053395906`
 - Result: Python 3.10–3.12 test/example matrix PASS; clean sdist/wheel build, metadata check, isolated installs, and installed CLI checks PASS.
 - Unresolved mandatory technical findings: none.
+
+## Post-authorization GitHub Codex review
+
+After maintainer authorization, the GitHub Codex review completed and reported seven additional findings. Merge was held while they were evaluated.
+
+| ID | Finding | Disposition |
+|---|---|---|
+| GCR-01 | The repository artifact index used CRLF working-tree bytes instead of committed LF blobs. | Fixed: rebuilt every entry from a byte-preserving checkout and added repository-level validation to CI. |
+| GCR-02 | PEP 639 metadata allowed setuptools versions older than 77. | Fixed: raised the build backend floor to `setuptools>=77`. |
+| GCR-03 | README used the removed `arap index --output` compatibility option. | Fixed: corrected the quick-start command. |
+| GCR-04 | Plain HTTP external evidence bypassed local artifact indexing. | Fixed: only HTTPS is exempt; HTTP now produces a validation error. |
+| GCR-05 | Collection-valued nested gate identifiers or statuses could raise `TypeError`. | Fixed: validate string types before set membership, with adversarial tests. |
+| GCR-06 | A cyclic symlink could raise `RuntimeError` during path resolution. | Fixed: convert resolution failures into fail-closed validation errors, with a regression test. |
+| GCR-07 | Runtime `arap.__version__` disagreed with alpha distribution metadata. | Fixed: both now report `0.1.0a1`, with a regression test. |
+
+These remediations require successful exact-head CI before `post-authorization-review-remediation` can pass. This section records technical review evidence, not external adoption or a third-party GitHub approval.

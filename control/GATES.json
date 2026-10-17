@@ -47,6 +47,12 @@
       "id": "maintainer-release-authorization",
       "mandatory": true,
       "status": "PASS"
+    },
+    {
+      "evidence": ["docs/INDEPENDENT_RELEASE_REVIEW.md", "tests/test_core.py"],
+      "id": "post-authorization-review-remediation",
+      "mandatory": true,
+      "status": "PENDING"
     }
   ]
 }

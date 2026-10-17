@@ -49,3 +49,14 @@ The sole authorized next action is to request Terry's explicit release authoriza
 
 This authorization is limited to a GitHub pre-release and the public qualification sprint. It does not authorize PyPI publication, broad promotion, fabricated adoption evidence, private-repository access, or submission of a Codex for OSS application.
 
+## 2026-10-18 — Post-authorization GitHub Codex review
+
+**Decision: BLOCKED pending exact-head remediation CI**
+
+- The previously running GitHub Codex review completed and opened seven findings, GCR-01 through GCR-07.
+- GCR-01 and GCR-03 were already corrected by authorization commit `525bce58589437d99ad0e4fef08b1e88a7c4dcb7`.
+- The remaining findings were remediated with targeted tests for hostile nested types, non-HTTPS evidence, path-resolution loops, and runtime version consistency; the packaging backend floor was raised to setuptools 77.
+- The `post-authorization-review-remediation` gate remains `PENDING` until GitHub Actions succeeds for the exact remediation head.
+
+No merge or release is authorized while this gate is pending.
+

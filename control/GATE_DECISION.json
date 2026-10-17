@@ -1,8 +1,10 @@
 {
-  "decision": "PASS",
-  "failed_or_pending_gates": [],
+  "decision": "BLOCKED",
+  "failed_or_pending_gates": [
+    "post-authorization-review-remediation"
+  ],
   "policy": "All mandatory gates must PASS. Performance cannot override integrity, safety, provenance, or independence failures.",
-  "reviewed_at": "2026-10-17T17:32:31+00:00",
-  "reviewer": "OpenAI Codex independent review plus Terry maintainer authorization",
+  "reviewed_at": "2026-10-17T17:33:34+00:00",
+  "reviewer": "OpenAI Codex GitHub review remediation",
   "validation_errors": []
 }

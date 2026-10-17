@@ -53,9 +53,13 @@ def sha256_file(path: Path) -> str:
 def project_path(root: Path, path: str | Path, *, must_exist: bool = False) -> Path:
     candidate = Path(path)
     absolute = candidate if candidate.is_absolute() else root / candidate
-    resolved = absolute.resolve()
     try:
-        resolved.relative_to(root.resolve())
+        resolved = absolute.resolve()
+        resolved_root = root.resolve()
+    except RuntimeError as error:
+        raise ValueError(f"path could not be resolved safely: {path}") from error
+    try:
+        resolved.relative_to(resolved_root)
     except ValueError as error:
         raise ValueError(f"path must be inside project: {path}") from error
     if must_exist and not resolved.is_file():
@@ -104,8 +108,10 @@ def validate_project(root: Path) -> list[str]:
                 errors.append("each gate requires an id")
             elif gate_id in ids:
                 errors.append(f"duplicate gate id: {gate_id}")
-            ids.add(gate_id)
-            if gate.get("status") not in {"PASS", "FAIL", "UNSUPPORTED", "PENDING"}:
+            else:
+                ids.add(gate_id)
+            status = gate.get("status")
+            if not isinstance(status, str) or status not in {"PASS", "FAIL", "UNSUPPORTED", "PENDING"}:
                 errors.append(f"gate {gate_id!r} has invalid status")
             if not isinstance(gate.get("mandatory"), bool):
                 errors.append(f"gate {gate_id!r} mandatory must be boolean")
@@ -131,7 +137,7 @@ def validate_project(root: Path) -> list[str]:
         indexed[relative] = artifact
         try:
             target = project_path(root, relative, must_exist=True)
-        except (OSError, ValueError) as error:
+        except (OSError, RuntimeError, ValueError) as error:
             errors.append(f"artifact {relative!r} is invalid: {error}")
             continue
         expected_hash = artifact.get("sha256")
@@ -149,7 +155,12 @@ def validate_project(root: Path) -> list[str]:
             if not isinstance(gate, dict):
                 continue
             for evidence in gate.get("evidence", []) if isinstance(gate.get("evidence"), list) else []:
-                if not isinstance(evidence, str) or evidence.startswith(("https://", "http://")):
+                if not isinstance(evidence, str):
+                    continue
+                if evidence.startswith("https://"):
+                    continue
+                if evidence.startswith("http://"):
+                    errors.append(f"gate {gate.get('id')!r} external evidence must use https: {evidence}")
                     continue
                 if evidence not in indexed:
                     errors.append(f"gate {gate.get('id')!r} evidence is not indexed: {evidence}")
