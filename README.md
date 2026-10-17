@@ -65,6 +65,40 @@ For a fresh synthetic CI handoff that preserves missing-review blockers, see [ex
 
 The CLI never runs research code, merges a pull request, uploads data, or claims scientific truth. It evaluates declared evidence against a declared protocol.
 
+### Exit codes
+
+| Command | Exit code | Meaning |
+| --- | --- | --- |
+| `init DIR` | `0` | Project created; prints `initialized DIR`. |
+| `validate DIR` | `0` | Contract is `VALID`. |
+| `validate DIR` | `1` | Contract is `INVALID`; validation errors follow. |
+| `index DIR FILE...` | `0` | Evidence indexed; prints the total indexed artifact count. |
+| `gate DIR --reviewer NAME` | `0` | Decision is `PASS`. |
+| `gate DIR --reviewer NAME` | `2` | Decision is `BLOCKED` or `REVISE`. |
+| Any command | `2` | File or value error; prints `error: ...` to stderr. Invalid arguments also exit `2`. |
+
+A missing evidence file makes `index` exit `2`; it is not created automatically.
+Missing or invalid control files make `validate` print `INVALID` and exit `1`.
+`gate` records a `BLOCKED` decision when project validation fails, and exits `2`.
+With `--output`, the decision is written to that project-relative path instead of
+`control/GATE_DECISION.json`.
+
+For example, after installation, run this in a new, disposable working directory:
+
+```bash
+arap init cli-example                            # 0: initialized cli-example
+arap validate cli-example                        # 0: VALID
+arap gate cli-example --reviewer example-reviewer # 2: BLOCKED (pending gates)
+arap index cli-example evidence/missing.json      # 2: error: ... (file absent)
+arap validate absent-project                     # 1: INVALID
+```
+
+On POSIX shells, inspect `$?` immediately after a command; in PowerShell use
+`$LASTEXITCODE`. A successful `init` or `validate` does not imply the gates passed.
+After indexing actual evidence and reviewing each mandatory gate as `PASS`,
+`arap gate cli-example --reviewer example-reviewer` prints `PASS` and exits `0`.
+Do not mark gates as passed merely to obtain a successful exit code.
+
 ## Repository map
 
 ```text
@@ -87,4 +121,3 @@ ARAP governs its own release preparation. The current decision and blockers are 
 Contributions are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md). Please report vulnerabilities according to [SECURITY.md](SECURITY.md), not in a public issue.
 
 Licensed under the [MIT License](LICENSE).
-
