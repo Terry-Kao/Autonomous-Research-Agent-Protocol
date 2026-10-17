@@ -72,3 +72,12 @@ No merge or release is authorized while this gate is pending.
 
 The remaining authorized sequence is final-head CI confirmation, merge, post-merge verification on `main`, and creation of the `v0.1.0-alpha` GitHub pre-release. PyPI publication, broad promotion, private-repository access, fabricated adoption evidence, and Codex for OSS submission remain excluded.
 
+## 2026-10-18 — Alpha release and qualification sprint
+
+- PR #2 merged as cd080c754051f70532553586baaa145654a4cc2c after CI 39054427964 passed and seven review threads were resolved with remediation evidence.
+- Post-merge CI 39054593527 passed all four jobs, including clean build/install and root/example hashes.
+- Tag v0.1.0-alpha points to that merge commit; GitHub pre-release was published with alpha limitations and no adoption claim.
+- Qualification roadmap, contributor task and review entry issues #3–#5 were opened. Fresh-environment validation and a domain-neutral integration are documented in docs/QUALIFICATION_SPRINT.md.
+
+Release gates PASS applies to the alpha release. It does not assert OSS program eligibility or authorize application submission.
+

@@ -33,14 +33,19 @@ Three invariants guide the protocol:
 
 Requires Python 3.10+ and no runtime dependencies.
 
+Clone this repository and enter it first. A fresh virtual environment is recommended.
+
 ```bash
 python -m pip install -e .
 arap init my-research-project
 cd my-research-project
 arap validate .
-arap index . evidence/result.json
 arap gate . --reviewer independent-review-bot
 ```
+
+The last command prints `BLOCKED` and exits with code 2: new projects have pending mandatory gates. This is expected. Add real evidence before indexing it with `arap index . evidence/result.json`; `init` does not create that file. Review the protocol and gates before recording any PASS.
+
+Return to the repository root before running the included example below.
 
 Try the included example (the gate command refreshes its derived decision timestamp):
 
@@ -48,6 +53,8 @@ Try the included example (the gate command refreshes its derived decision timest
 arap validate examples/minimal-project
 arap gate examples/minimal-project --reviewer local-review
 ```
+
+For a fresh synthetic CI handoff that preserves missing-review blockers, see [examples/local-ci](examples/local-ci/README.md).
 
 ## What the CLI does
 

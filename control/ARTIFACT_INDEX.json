@@ -9,9 +9,9 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "7c5901885438cff6df67be737a14d946b49ca5adb2209a6bcb50bec90e6f94c4",
-      "size_bytes": 1274,
+      "purpose": "qualification sprint evidence",
+      "sha256": "55bfaafd6a1458d6ddeec509a7a3d59c84bcc69585fac4537f61059c3a9bff54",
+      "size_bytes": 1354,
       "status": "CURRENT"
     },
     {
@@ -30,9 +30,9 @@
     },
     {
       "path": "README.md",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "302c4cc091f0818149bcc05d50218f283c307f5edc0e2e7ffde994333a82da7b",
-      "size_bytes": 3527,
+      "purpose": "qualification sprint evidence",
+      "sha256": "299205a567d803de39f7a77d5670e52dc8bcceafce1b7ef5f20a7f0d0b07833f",
+      "size_bytes": 4071,
       "status": "CURRENT"
     },
     {
@@ -51,16 +51,16 @@
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "v0.1.0-alpha final review evidence",
-      "sha256": "d1659aae3dfcd2a9433bc26f8a4200f7c9efa2469f31f5f59166bbfb31263c10",
-      "size_bytes": 5334,
+      "purpose": "qualification sprint evidence",
+      "sha256": "3fe6bca049b7732860319e8700d51c67ac55f58d43f5c941f1e14a2fa0f6b621",
+      "size_bytes": 6105,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "v0.1.0-alpha final review evidence",
-      "sha256": "da8b679cc699106cfef1336d6fd39cfcbc928fabaf0822d989eb0a11529afddf",
-      "size_bytes": 370,
+      "purpose": "qualification sprint evidence",
+      "sha256": "f6cd93630d92ed74661498df560c743e3ffb916d9262f266e4b9ad1702f6626c",
+      "size_bytes": 384,
       "status": "CURRENT"
     },
     {
@@ -68,6 +68,13 @@
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "b6b5efd109143c01844c8ddd4440bada738b9099bd1b2a4c32616503a85ffbbb",
       "size_bytes": 1831,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/CODEX_FOR_OSS_EVIDENCE_CHECKLIST.md",
+      "purpose": "qualification sprint evidence",
+      "sha256": "987d4651b3f38106cb0bfdc84d3e7ece9867596ccf9abce74293e8be197762bb",
+      "size_bytes": 1805,
       "status": "CURRENT"
     },
     {
@@ -85,6 +92,13 @@
       "status": "CURRENT"
     },
     {
+      "path": "docs/QUALIFICATION_SPRINT.md",
+      "purpose": "qualification sprint evidence",
+      "sha256": "2bbbec00e52f35e6bc793d8ff4f457a1888c58ff8c572c02288b42019c521ddb",
+      "size_bytes": 2780,
+      "status": "CURRENT"
+    },
+    {
       "path": "docs/RELEASE_NOTES_v0.1.0-alpha.md",
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "931626937aaf818204c6487f68946fea885940a02c5f337992e7bdd325147056",
@@ -96,6 +110,20 @@
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "624ddf1e82f17d4514f153c3a5d0850650893ca6eccb74c6044017cdb48f8a61",
       "size_bytes": 873,
+      "status": "CURRENT"
+    },
+    {
+      "path": "examples/local-ci/README.md",
+      "purpose": "qualification sprint evidence",
+      "sha256": "8a7070065426a7d6cbfdc9cf61c9e58ced75c9e93d872185ed966585ed81f4fc",
+      "size_bytes": 532,
+      "status": "CURRENT"
+    },
+    {
+      "path": "examples/local-ci/run.py",
+      "purpose": "qualification sprint evidence",
+      "sha256": "7da1875c65348927a662d0712ca042f379cd713d131ca9dc7e9c4751f98cd9f9",
+      "size_bytes": 959,
       "status": "CURRENT"
     },
     {
@@ -148,5 +176,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T17:35:14+00:00"
+  "updated_at": "2026-10-17T21:21:23+00:00"
 }

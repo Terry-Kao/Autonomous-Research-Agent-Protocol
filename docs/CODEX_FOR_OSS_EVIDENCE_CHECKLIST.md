@@ -1,41 +1,23 @@
-# Codex for Open Source evidence checklist
+# Codex for OSS evidence checklist
 
-This checklist prepares evidence; it does not claim eligibility or authorize form submission.
+Status: materials may be prepared; application has not been submitted. Acceptance is not asserted.
 
-## Maintainer and repository
+Official program source, checked 2026-10-18: https://developers.openai.com/community/codex-for-oss
 
-- [ ] Public GitHub profile is complete and verifiable.
-- [ ] Public repository URL and license are stable.
-- [ ] Primary/core maintainer role is visible from ownership and sustained activity.
-- [ ] README, architecture, quick start, contribution, security, and conduct policies are present.
-- [ ] CI passes on the default branch.
-- [ ] A tagged release and release notes exist.
+The program considers core maintainers and widely used public projects, and permits applicants to explain ecosystem importance when their project does not fit the usual criteria. Benefits and decisions remain subject to the official program and review.
 
-## Real maintenance activity
+- [x] Public MIT repository and maintainer write access
+- [x] Release and maintenance evidence: PR #2, tag v0.1.0-alpha, post-merge CI 39054593527
+- [x] Review/remediation evidence, explicit authorization and artifact hashes
+- [x] v0.2 roadmap (#3), good first issue (#4), future review entry point (#5)
+- [x] Domain-neutral maintainer-authored integration: examples/local-ci
+- [ ] Genuine external feedback/review: attach evidence when it exists
+- [ ] Usage/adoption snapshot: record actual values with date and source; do not substitute maintainer-created issues or demos
+- [ ] Ecosystem importance narrative: explain the intended governance problem; label unvalidated impact as a hypothesis
+- [ ] Proposed Codex/API-credit use: triage, adversarial tests, review and release maintenance, with a bounded budget
+- [ ] Optional Codex Security use case: untrusted JSON, artifact paths and supply-chain metadata
+- [ ] Terry reviews final answers, requested benefits, and current form requirements
+- [ ] Any account/organization/contact details supplied privately by Terry where required; never commit identifiers or credentials
+- [ ] Separate explicit authorization for final submission
 
-- [ ] Issues show bounded triage and roadmap work.
-- [ ] Pull requests show review, tests, and evidence-backed decisions.
-- [ ] Release management and security response processes are visible.
-- [ ] External contributors and users are supported when they appear.
-
-## Adoption evidence
-
-- [ ] Stars and forks are recorded without inflation.
-- [ ] Package downloads or release downloads are recorded from a verifiable source.
-- [ ] Downstream integrations, citations, or testimonials have permission and links.
-- [ ] Ecosystem importance is explained without overstating current adoption.
-
-## Requested program resources
-
-- [ ] API credits use case: PR evidence checks, artifact indexing, maintainer triage, release notes, and bounded research automation.
-- [ ] Codex Security use case: path traversal, unsafe workflow inputs, artifact integrity, secret exposure, dependency and supply-chain review.
-- [ ] OpenAI organization ID is retrieved by the account owner and stored outside this repository.
-- [ ] ChatGPT account email and GitHub username are confirmed by the applicant.
-
-## Submission gate
-
-- [ ] The maintainer has reviewed the final answers.
-- [ ] No private repository content or unpublished research is disclosed.
-- [ ] No credentials, organization IDs, or personal account details are committed.
-- [ ] The maintainer explicitly authorizes the final submission.
-
+No external adoption, outside contributor approval, eligibility guarantee, PyPI downloads, or completed second review is claimed.
