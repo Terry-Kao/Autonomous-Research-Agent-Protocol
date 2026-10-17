@@ -1,0 +1,8 @@
+{
+  "gates": [
+    {"evidence": ["evidence/test-result.json"], "id": "integrity", "mandatory": true, "status": "PASS"},
+    {"evidence": ["evidence/test-result.json"], "id": "provenance", "mandatory": true, "status": "PASS"},
+    {"evidence": ["evidence/review.json"], "id": "independent-review", "mandatory": true, "status": "PASS"}
+  ]
+}
+

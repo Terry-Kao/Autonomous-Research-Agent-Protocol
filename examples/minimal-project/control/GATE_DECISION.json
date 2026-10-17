@@ -1,0 +1,8 @@
+{
+  "decision": "PASS",
+  "failed_or_pending_gates": [],
+  "policy": "All mandatory gates must PASS. Performance cannot override integrity, safety, provenance, or independence failures.",
+  "reviewed_at": "2026-10-17T16:39:30+00:00",
+  "reviewer": "local-independent-check",
+  "validation_errors": []
+}

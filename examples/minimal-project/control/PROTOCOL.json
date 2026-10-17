@@ -1,0 +1,8 @@
+{
+  "exclusions": ["private data", "network access"],
+  "frozen": true,
+  "frozen_at": "2026-10-18T00:00:00+00:00",
+  "scope": "Verify a deterministic addition function.",
+  "version": 1
+}
+

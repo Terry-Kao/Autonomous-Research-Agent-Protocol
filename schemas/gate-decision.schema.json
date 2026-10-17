@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/schemas/gate-decision.schema.json",
+  "title": "ARAP Gate Decision",
+  "type": "object",
+  "required": ["decision", "reviewer", "reviewed_at", "failed_or_pending_gates"],
+  "properties": {
+    "decision": {"enum": ["PASS", "REVISE", "BLOCKED"]},
+    "reviewer": {"type": "string", "minLength": 1},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "failed_or_pending_gates": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}
+
