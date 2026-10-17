@@ -42,7 +42,7 @@ arap index . --output control/ARTIFACT_INDEX.json evidence/result.json
 arap gate . --reviewer independent-review-bot
 ```
 
-Try the included example without modifying it:
+Try the included example (the gate command refreshes its derived decision timestamp):
 
 ```bash
 arap validate examples/minimal-project

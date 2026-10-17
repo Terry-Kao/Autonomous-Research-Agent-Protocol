@@ -12,3 +12,15 @@
 
 This decision does not authorize a package publication, GitHub Release, public announcement, or sponsorship application.
 
+## 2026-10-18 — Independent release review and remediation
+
+**Decision: BLOCKED pending committed-byte CI and maintainer authorization**
+
+- Independent review identified nine mandatory findings, IR-01 through IR-09.
+- Path containment, hostile JSON handling, artifact-integrity validation, example provenance, documentation, packaging metadata, and clean-build CI were remediated.
+- Local verification passed 12/12 tests and validated the example's indexed evidence.
+- The independent review report and candidate release notes were added as reviewable evidence.
+- Python matrix and clean-package gates remain pending until GitHub Actions evaluates the committed remediation.
+
+No release, publication, announcement, private-repository access, or sponsorship application is authorized by this entry.
+

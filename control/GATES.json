@@ -7,10 +7,16 @@
       "status": "PASS"
     },
     {
-      "evidence": ["https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39050618056"],
+      "evidence": [".github/workflows/ci.yml"],
       "id": "github-actions-python-3.10-3.12",
       "mandatory": true,
-      "status": "PASS"
+      "status": "PENDING"
+    },
+    {
+      "evidence": [".github/workflows/ci.yml", "pyproject.toml"],
+      "id": "clean-package-build-and-install",
+      "mandatory": true,
+      "status": "PENDING"
     },
     {
       "evidence": ["README.md", "docs/ARCHITECTURE.md", "docs/WORKFLOW.md"],
@@ -19,16 +25,22 @@
       "status": "PASS"
     },
     {
-      "evidence": ["SECURITY.md", ".gitignore"],
+      "evidence": ["SECURITY.md", ".gitignore", ".gitattributes", "docs/INDEPENDENT_RELEASE_REVIEW.md"],
       "id": "public-content-and-secret-boundary",
       "mandatory": true,
       "status": "PASS"
     },
     {
-      "evidence": [],
+      "evidence": ["docs/INDEPENDENT_RELEASE_REVIEW.md", "src/arap/core.py", "src/arap/cli.py"],
       "id": "independent-review",
       "mandatory": true,
-      "status": "PENDING"
+      "status": "PASS"
+    },
+    {
+      "evidence": ["docs/RELEASE_NOTES_v0.1.0-alpha.md"],
+      "id": "release-candidate-notes",
+      "mandatory": true,
+      "status": "PASS"
     },
     {
       "evidence": [],

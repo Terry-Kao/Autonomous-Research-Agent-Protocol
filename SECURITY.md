@@ -12,5 +12,5 @@ Include affected version, impact, minimal reproduction, and any suggested mitiga
 
 ## Threat model
 
-ARAP reads project-local JSON and hashes project-local files. Important risks include path traversal, untrusted evidence, forged gate status, secret inclusion, dependency confusion in downstream integrations, and treating agent-produced conclusions as independent review. ARAP rejects artifact paths outside the project root and intentionally does not execute evidence files.
+ARAP reads project-local JSON and hashes project-local files. Important risks include path traversal, untrusted evidence, forged gate status, secret inclusion, dependency confusion in downstream integrations, and treating agent-produced conclusions as independent review. ARAP rejects duplicate keys and oversized control JSON, rejects artifact and output paths outside the resolved project root, verifies indexed hashes and sizes, requires local gate evidence to be indexed, and never executes evidence files.
 

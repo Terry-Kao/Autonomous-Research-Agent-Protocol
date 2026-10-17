@@ -4,7 +4,8 @@ from pathlib import Path
 import pytest
 
 from arap.cli import init_project
-from arap.core import evaluate_gates, index_artifacts, sha256_file, validate_project
+from arap.cli import main
+from arap.core import evaluate_gates, index_artifacts, load_json, sha256_file, validate_project
 
 
 def test_init_is_valid(tmp_path: Path) -> None:
@@ -69,4 +70,46 @@ def test_duplicate_gate_ids_are_invalid(tmp_path: Path) -> None:
     data["gates"].append(dict(data["gates"][0]))
     path.write_text(json.dumps(data), encoding="utf-8")
     assert any("duplicate gate id" in error for error in validate_project(root))
+
+
+def test_untrusted_json_shape_is_reported_not_raised(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    (root / "control/GATES.json").write_text('["not-an-object"]', encoding="utf-8")
+    assert validate_project(root) == ["all control files must contain a JSON object"]
+
+
+def test_duplicate_json_keys_are_rejected(tmp_path: Path) -> None:
+    path = tmp_path / "duplicate.json"
+    path.write_text('{"status":"PASS","status":"FAIL"}', encoding="utf-8")
+    with pytest.raises(ValueError, match="duplicate JSON key"):
+        load_json(path)
+
+
+def test_tampered_indexed_artifact_is_invalid(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/result.json"
+    artifact.write_text('{"score":1}\n', encoding="utf-8")
+    index_artifacts(root, [Path("evidence/result.json")])
+    artifact.write_text('{"score":2}\n', encoding="utf-8")
+    assert any("sha256 mismatch" in error for error in validate_project(root))
+
+
+def test_local_gate_evidence_must_be_indexed(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    evidence = root / "evidence/result.json"
+    evidence.write_text('{}\n', encoding="utf-8")
+    gates = json.loads((root / "control/GATES.json").read_text(encoding="utf-8"))
+    gates["gates"][0]["evidence"] = ["evidence/result.json"]
+    (root / "control/GATES.json").write_text(json.dumps(gates), encoding="utf-8")
+    assert any("evidence is not indexed" in error for error in validate_project(root))
+
+
+def test_gate_output_cannot_escape_project(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    assert main(["gate", str(root), "--reviewer", "reviewer", "--output", str(tmp_path / "outside.json")]) == 2
+    assert not (tmp_path / "outside.json").exists()
 

@@ -4,11 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "arap"
-version = "0.1.0"
+version = "0.1.0a1"
 description = "Evidence-first governance primitives for autonomous research agents"
 readme = "README.md"
 requires-python = ">=3.10"
-license = {text = "MIT"}
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{name = "Terry-Kao"}]
 keywords = ["agents", "research", "governance", "reproducibility", "evidence"]
 classifiers = [
@@ -19,6 +20,11 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
 ]
+
+[project.urls]
+Homepage = "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol"
+Issues = "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues"
+Source = "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol"
 
 [project.scripts]
 arap = "arap.cli:main"
