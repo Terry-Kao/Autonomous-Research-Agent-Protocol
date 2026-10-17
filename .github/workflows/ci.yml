@@ -25,6 +25,7 @@ jobs:
       - run: arap validate .
       - run: arap validate examples/minimal-project
       - run: arap gate examples/minimal-project --reviewer github-actions
+      - run: python examples/local-ci/run.py "${{ runner.temp }}/arap-local-ci"
 
   package:
     runs-on: ubuntu-latest
