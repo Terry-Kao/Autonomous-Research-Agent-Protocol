@@ -44,23 +44,23 @@
     },
     {
       "path": "control/GATES.json",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "798506a374f15a0813968dc79acddc355caae12f605160ea977d543fbb2028a7",
-      "size_bytes": 1777,
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "01cb3eca15773e59fe5f441139a5a69f88d6701e139a790c2584bd93e6978a76",
+      "size_bytes": 1866,
       "status": "CURRENT"
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "dd7fd5d0c8225d6b944e9ed04a5a1c0ef96ceb4861bde8091964e1895db1abbd",
-      "size_bytes": 4431,
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "d1659aae3dfcd2a9433bc26f8a4200f7c9efa2469f31f5f59166bbfb31263c10",
+      "size_bytes": 5334,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "68331df35c890933100e9ddfaa8b382befc9549d2978a367710685f937163d17",
-      "size_bytes": 368,
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "da8b679cc699106cfef1336d6fd39cfcbc928fabaf0822d989eb0a11529afddf",
+      "size_bytes": 370,
       "status": "CURRENT"
     },
     {
@@ -72,9 +72,9 @@
     },
     {
       "path": "docs/INDEPENDENT_RELEASE_REVIEW.md",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "e5676bd97e76004fa257a78ba95c3b2056b1696fc80189b11f71bed01ab47006",
-      "size_bytes": 6339,
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "36ee407efde520d0f53192a46a056dd75e8a44bb1c2bade4a404ad7566f6b687",
+      "size_bytes": 6563,
       "status": "CURRENT"
     },
     {
@@ -148,5 +148,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T17:33:34+00:00"
+  "updated_at": "2026-10-17T17:35:14+00:00"
 }

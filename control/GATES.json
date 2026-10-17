@@ -49,10 +49,10 @@
       "status": "PASS"
     },
     {
-      "evidence": ["docs/INDEPENDENT_RELEASE_REVIEW.md", "tests/test_core.py"],
+      "evidence": ["docs/INDEPENDENT_RELEASE_REVIEW.md", "tests/test_core.py", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39054314202"],
       "id": "post-authorization-review-remediation",
       "mandatory": true,
-      "status": "PENDING"
+      "status": "PASS"
     }
   ]
 }

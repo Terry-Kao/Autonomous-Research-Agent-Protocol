@@ -69,4 +69,4 @@ After maintainer authorization, the GitHub Codex review completed and reported s
 | GCR-06 | A cyclic symlink could raise `RuntimeError` during path resolution. | Fixed: convert resolution failures into fail-closed validation errors, with a regression test. |
 | GCR-07 | Runtime `arap.__version__` disagreed with alpha distribution metadata. | Fixed: both now report `0.1.0a1`, with a regression test. |
 
-These remediations require successful exact-head CI before `post-authorization-review-remediation` can pass. This section records technical review evidence, not external adoption or a third-party GitHub approval.
+Remediation commit `8f0b9e0489e5fcc3811370968f2322362b8f4124` passed GitHub Actions run `39054314202`: Python 3.10–3.12 tests, repository and example validation, clean sdist/wheel builds, metadata checks, isolated installs, and installed CLI checks all succeeded. The `post-authorization-review-remediation` gate therefore passes. This section records technical review evidence, not external adoption or a third-party GitHub approval.

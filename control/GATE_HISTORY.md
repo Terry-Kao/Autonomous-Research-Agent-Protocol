@@ -60,3 +60,15 @@ This authorization is limited to a GitHub pre-release and the public qualificati
 
 No merge or release is authorized while this gate is pending.
 
+## 2026-10-18 — Post-authorization remediation verification
+
+**Decision: PASS for merge and the bounded GitHub pre-release**
+
+- Verified remediation commit: `8f0b9e0489e5fcc3811370968f2322362b8f4124`.
+- GitHub Actions run `39054314202` completed successfully.
+- Python 3.10, 3.11, and 3.12 passed 17 tests plus repository-level and example validation.
+- The packaging job built and checked sdist/wheel artifacts, installed both in isolated environments, and exercised the installed CLI.
+- All seven GitHub Codex findings are remediated; the repository has no unresolved mandatory technical finding.
+
+The remaining authorized sequence is final-head CI confirmation, merge, post-merge verification on `main`, and creation of the `v0.1.0-alpha` GitHub pre-release. PyPI publication, broad promotion, private-repository access, fabricated adoption evidence, and Codex for OSS submission remain excluded.
+
