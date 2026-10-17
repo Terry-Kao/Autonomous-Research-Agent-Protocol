@@ -52,8 +52,8 @@
     {
       "path": "docs/INDEPENDENT_RELEASE_REVIEW.md",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "7b47b96800ece48871935d525a65909075cd7b20fd18e99e455f09b2ebd9f96e",
-      "size_bytes": 4339,
+      "sha256": "b8c728fd49e78dbe97bfdfd258869e2473e9589295a2df17a2faef1aac82070f",
+      "size_bytes": 4414,
       "status": "CURRENT"
     },
     {
@@ -73,8 +73,8 @@
     {
       "path": "pyproject.toml",
       "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "357a1279d07cd0281c4b0718c7b914f3478f3ec74ce37a5e736256f9550f142c",
-      "size_bytes": 1140,
+      "sha256": "03be84ef27906f6b8838954bb0ff98648392685fca395d4fe738ce9a9f5d5801",
+      "size_bytes": 1095,
       "status": "CURRENT"
     },
     {
@@ -113,5 +113,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T17:18:16+00:00"
+  "updated_at": "2026-10-17T17:19:14+00:00"
 }
