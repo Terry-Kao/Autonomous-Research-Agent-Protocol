@@ -1,0 +1,59 @@
+{
+  "gates": [
+    {
+      "evidence": ["tests/test_core.py"],
+      "id": "local-tests",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": [".github/workflows/ci.yml", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39053395906"],
+      "id": "github-actions-python-3.10-3.12",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": [".github/workflows/ci.yml", "pyproject.toml", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39053395906"],
+      "id": "clean-package-build-and-install",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["README.md", "docs/ARCHITECTURE.md", "docs/WORKFLOW.md"],
+      "id": "documentation-contract",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["SECURITY.md", ".gitignore", ".gitattributes", "docs/INDEPENDENT_RELEASE_REVIEW.md"],
+      "id": "public-content-and-secret-boundary",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["docs/INDEPENDENT_RELEASE_REVIEW.md", "src/arap/core.py", "src/arap/cli.py"],
+      "id": "independent-review",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["docs/RELEASE_NOTES_v0.1.0-alpha.md"],
+      "id": "release-candidate-notes",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["docs/MAINTAINER_RELEASE_AUTHORIZATION.md"],
+      "id": "maintainer-release-authorization",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["docs/INDEPENDENT_RELEASE_REVIEW.md", "tests/test_core.py", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39054314202"],
+      "id": "post-authorization-review-remediation",
+      "mandatory": true,
+      "status": "PASS"
+    }
+  ]
+}
+

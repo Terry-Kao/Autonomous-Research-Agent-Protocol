@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from .core import evaluate_gates, index_artifacts, utc_now, validate_project, write_json
+from .core import evaluate_gates, index_artifacts, project_path, utc_now, validate_project, write_json
 
 
 def init_project(root: Path) -> None:
@@ -45,7 +45,6 @@ def parser() -> argparse.ArgumentParser:
     index = sub.add_parser("index", help="hash and index evidence files")
     index.add_argument("directory", type=Path)
     index.add_argument("files", nargs="+", type=Path)
-    index.add_argument("--output", type=Path, help="compatibility option; ARAP always updates control/ARTIFACT_INDEX.json")
     index.add_argument("--purpose", default="run evidence")
     gate = sub.add_parser("gate", help="evaluate declared gates")
     gate.add_argument("directory", type=Path)
@@ -73,7 +72,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"indexed {len(result['artifacts'])} artifact(s)")
         elif args.command == "gate":
             result = evaluate_gates(args.directory, args.reviewer)
-            output = args.output or args.directory / "control/GATE_DECISION.json"
+            output = project_path(args.directory, args.output or Path("control/GATE_DECISION.json"))
             write_json(output, result)
             print(result["decision"])
             return 0 if result["decision"] == "PASS" else 2

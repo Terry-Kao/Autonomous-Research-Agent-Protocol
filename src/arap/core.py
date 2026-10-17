@@ -13,6 +13,7 @@ REQUIRED_FILES = (
     "control/ARTIFACT_INDEX.json",
 )
 DECISIONS = {"PASS", "REVISE", "BLOCKED"}
+MAX_JSON_BYTES = 10 * 1024 * 1024
 
 
 def utc_now() -> str:
@@ -20,13 +21,25 @@ def utc_now() -> str:
 
 
 def load_json(path: Path) -> Any:
+    if path.stat().st_size > MAX_JSON_BYTES:
+        raise ValueError(f"JSON file exceeds {MAX_JSON_BYTES} bytes: {path}")
+
+    def reject_duplicates(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            if key in result:
+                raise ValueError(f"duplicate JSON key: {key}")
+            result[key] = value
+        return result
+
     with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
+        return json.load(handle, object_pairs_hook=reject_duplicates)
 
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        handle.write(json.dumps(value, indent=2, sort_keys=True) + "\n")
 
 
 def sha256_file(path: Path) -> str:
@@ -35,6 +48,23 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def project_path(root: Path, path: str | Path, *, must_exist: bool = False) -> Path:
+    candidate = Path(path)
+    absolute = candidate if candidate.is_absolute() else root / candidate
+    try:
+        resolved = absolute.resolve()
+        resolved_root = root.resolve()
+    except RuntimeError as error:
+        raise ValueError(f"path could not be resolved safely: {path}") from error
+    try:
+        resolved.relative_to(resolved_root)
+    except ValueError as error:
+        raise ValueError(f"path must be inside project: {path}") from error
+    if must_exist and not resolved.is_file():
+        raise FileNotFoundError(path)
+    return resolved
 
 
 def validate_project(root: Path) -> list[str]:
@@ -50,8 +80,11 @@ def validate_project(root: Path) -> list[str]:
         protocol = load_json(root / "control/PROTOCOL.json")
         gates = load_json(root / "control/GATES.json")
         artifact_index = load_json(root / "control/ARTIFACT_INDEX.json")
-    except (OSError, json.JSONDecodeError) as error:
+    except (OSError, ValueError, json.JSONDecodeError) as error:
         return [f"invalid JSON: {error}"]
+
+    if not all(isinstance(item, dict) for item in (state, protocol, gates, artifact_index)):
+        return ["all control files must contain a JSON object"]
 
     for field in ("project", "phase", "status", "next_action"):
         if not isinstance(state.get(field), str) or not state[field].strip():
@@ -67,34 +100,86 @@ def validate_project(root: Path) -> list[str]:
     else:
         ids: set[str] = set()
         for gate in gates["gates"]:
+            if not isinstance(gate, dict):
+                errors.append("each gate must be an object")
+                continue
             gate_id = gate.get("id")
             if not isinstance(gate_id, str) or not gate_id:
                 errors.append("each gate requires an id")
             elif gate_id in ids:
                 errors.append(f"duplicate gate id: {gate_id}")
-            ids.add(gate_id)
-            if gate.get("status") not in {"PASS", "FAIL", "UNSUPPORTED", "PENDING"}:
+            else:
+                ids.add(gate_id)
+            status = gate.get("status")
+            if not isinstance(status, str) or status not in {"PASS", "FAIL", "UNSUPPORTED", "PENDING"}:
                 errors.append(f"gate {gate_id!r} has invalid status")
             if not isinstance(gate.get("mandatory"), bool):
                 errors.append(f"gate {gate_id!r} mandatory must be boolean")
-    if not isinstance(artifact_index.get("artifacts"), list):
+            evidence = gate.get("evidence")
+            if not isinstance(evidence, list) or not all(isinstance(item, str) and item for item in evidence):
+                errors.append(f"gate {gate_id!r} evidence must be a list of non-empty strings")
+    artifacts = artifact_index.get("artifacts")
+    if not isinstance(artifacts, list):
         errors.append("ARTIFACT_INDEX.artifacts must be a list")
+        artifacts = []
+    indexed: dict[str, dict[str, Any]] = {}
+    for artifact in artifacts:
+        if not isinstance(artifact, dict):
+            errors.append("each artifact must be an object")
+            continue
+        relative = artifact.get("path")
+        if not isinstance(relative, str) or not relative:
+            errors.append("each artifact requires a non-empty path")
+            continue
+        if relative in indexed:
+            errors.append(f"duplicate artifact path: {relative}")
+            continue
+        indexed[relative] = artifact
+        try:
+            target = project_path(root, relative, must_exist=True)
+        except (OSError, RuntimeError, ValueError) as error:
+            errors.append(f"artifact {relative!r} is invalid: {error}")
+            continue
+        expected_hash = artifact.get("sha256")
+        expected_size = artifact.get("size_bytes")
+        if not isinstance(expected_hash, str) or len(expected_hash) != 64:
+            errors.append(f"artifact {relative!r} has invalid sha256")
+        elif sha256_file(target) != expected_hash:
+            errors.append(f"artifact {relative!r} sha256 mismatch")
+        if not isinstance(expected_size, int) or isinstance(expected_size, bool) or expected_size < 0:
+            errors.append(f"artifact {relative!r} has invalid size_bytes")
+        elif target.stat().st_size != expected_size:
+            errors.append(f"artifact {relative!r} size mismatch")
+    if isinstance(gates.get("gates"), list):
+        for gate in gates["gates"]:
+            if not isinstance(gate, dict):
+                continue
+            for evidence in gate.get("evidence", []) if isinstance(gate.get("evidence"), list) else []:
+                if not isinstance(evidence, str):
+                    continue
+                if evidence.startswith("https://"):
+                    continue
+                if evidence.startswith("http://"):
+                    errors.append(f"gate {gate.get('id')!r} external evidence must use https: {evidence}")
+                    continue
+                if evidence not in indexed:
+                    errors.append(f"gate {gate.get('id')!r} evidence is not indexed: {evidence}")
     return errors
 
 
 def index_artifacts(root: Path, paths: list[Path], purpose: str = "run evidence") -> dict[str, Any]:
     index_path = root / "control/ARTIFACT_INDEX.json"
     current = load_json(index_path) if index_path.exists() else {"artifacts": []}
-    by_path = {item["path"]: item for item in current.get("artifacts", [])}
+    if not isinstance(current, dict) or not isinstance(current.get("artifacts"), list):
+        raise ValueError("ARTIFACT_INDEX.artifacts must be a list")
+    by_path: dict[str, dict[str, Any]] = {}
+    for item in current["artifacts"]:
+        if not isinstance(item, dict) or not isinstance(item.get("path"), str):
+            raise ValueError("each existing artifact requires a string path")
+        by_path[item["path"]] = item
     for path in paths:
-        absolute = path if path.is_absolute() else root / path
-        resolved = absolute.resolve()
-        try:
-            relative = resolved.relative_to(root.resolve()).as_posix()
-        except ValueError as error:
-            raise ValueError(f"artifact must be inside project: {path}") from error
-        if not resolved.is_file():
-            raise FileNotFoundError(path)
+        resolved = project_path(root, path, must_exist=True)
+        relative = resolved.relative_to(root.resolve()).as_posix()
         by_path[relative] = {
             "path": relative,
             "purpose": purpose,

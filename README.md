@@ -38,11 +38,11 @@ python -m pip install -e .
 arap init my-research-project
 cd my-research-project
 arap validate .
-arap index . --output control/ARTIFACT_INDEX.json evidence/result.json
+arap index . evidence/result.json
 arap gate . --reviewer independent-review-bot
 ```
 
-Try the included example without modifying it:
+Try the included example (the gate command refreshes its derived decision timestamp):
 
 ```bash
 arap validate examples/minimal-project
@@ -64,9 +64,12 @@ The CLI never runs research code, merges a pull request, uploads data, or claims
 src/arap/                  dependency-free CLI and validation library
 schemas/                   JSON Schemas for interoperable state files
 examples/minimal-project/  runnable domain-neutral example
+control/                   this repository's own state, gates, and evidence index
 docs/                      architecture, workflow, security, roadmap
 .github/                   issue/PR templates and CI
 ```
+
+ARAP governs its own release preparation. The current decision and blockers are recorded in [`control/PROJECT_STATE.json`](control/PROJECT_STATE.json) and [`control/GATE_HISTORY.md`](control/GATE_HISTORY.md).
 
 ## Status
 

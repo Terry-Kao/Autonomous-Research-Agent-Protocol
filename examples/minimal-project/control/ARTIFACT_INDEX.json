@@ -1,5 +1,19 @@
 {
-  "artifacts": [],
-  "updated_at": "2026-10-18T00:00:00+00:00"
+  "artifacts": [
+    {
+      "path": "evidence/review.json",
+      "purpose": "example gate evidence",
+      "sha256": "3d434bc02bd1fde4f3eb005939cbb3c5d82de78647b03e18db6695b81ebbaae8",
+      "size_bytes": 115,
+      "status": "CURRENT"
+    },
+    {
+      "path": "evidence/test-result.json",
+      "purpose": "example gate evidence",
+      "sha256": "210e001871a6e7e70a1959e14ded8c828e7ce1d4c92b4959ee4fc2d486092372",
+      "size_bytes": 78,
+      "status": "CURRENT"
+    }
+  ],
+  "updated_at": "2026-10-17T17:20:47+00:00"
 }
-

@@ -10,6 +10,8 @@ ARAP separates orchestration from truth claims. Agents and CI may collect eviden
 - `ARTIFACT_INDEX.json` binds evidence paths to SHA-256 digests.
 - `GATE_DECISION.json` is a derived review result, not an authority to merge by itself.
 
+Validation treats control JSON as untrusted input: top-level and nested shapes are checked, duplicate keys and oversized JSON are rejected, project-local paths may not escape the project root, and every local gate-evidence path must be bound to its current bytes in `ARTIFACT_INDEX.json`. HTTPS references identify external evidence but are not treated as content-addressed local artifacts.
+
 ## Trust boundaries
 
 The authoring agent may propose implementation and evidence. Independent review must run from committed bytes and must not treat the author's conclusion as evidence. Repository protections and human maintainer policy remain authoritative for merge and release.

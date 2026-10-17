@@ -1,0 +1,152 @@
+{
+  "artifacts": [
+    {
+      "path": ".gitattributes",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "size_bytes": 8,
+      "status": "CURRENT"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "7c5901885438cff6df67be737a14d946b49ca5adb2209a6bcb50bec90e6f94c4",
+      "size_bytes": 1274,
+      "status": "CURRENT"
+    },
+    {
+      "path": ".gitignore",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "a3761e953bee7cec6cdfc6687061db6532f2a005bc5ca9806eb51faacdc51445",
+      "size_bytes": 125,
+      "status": "CURRENT"
+    },
+    {
+      "path": "LICENSE",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "4efe37e16251f5d45451e3d60b947ebeae1d6d5a82c94b3c63a9e1b1a7d5f6ee",
+      "size_bytes": 1067,
+      "status": "CURRENT"
+    },
+    {
+      "path": "README.md",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "302c4cc091f0818149bcc05d50218f283c307f5edc0e2e7ffde994333a82da7b",
+      "size_bytes": 3527,
+      "status": "CURRENT"
+    },
+    {
+      "path": "SECURITY.md",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "63bfbca9fbe0cb92045dc24418ec7a20faf49d869332ee53fb0a423e2c4d7ae6",
+      "size_bytes": 1105,
+      "status": "CURRENT"
+    },
+    {
+      "path": "control/GATES.json",
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "01cb3eca15773e59fe5f441139a5a69f88d6701e139a790c2584bd93e6978a76",
+      "size_bytes": 1866,
+      "status": "CURRENT"
+    },
+    {
+      "path": "control/GATE_HISTORY.md",
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "d1659aae3dfcd2a9433bc26f8a4200f7c9efa2469f31f5f59166bbfb31263c10",
+      "size_bytes": 5334,
+      "status": "CURRENT"
+    },
+    {
+      "path": "control/PROJECT_STATE.json",
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "da8b679cc699106cfef1336d6fd39cfcbc928fabaf0822d989eb0a11529afddf",
+      "size_bytes": 370,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "b6b5efd109143c01844c8ddd4440bada738b9099bd1b2a4c32616503a85ffbbb",
+      "size_bytes": 1831,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/INDEPENDENT_RELEASE_REVIEW.md",
+      "purpose": "v0.1.0-alpha final review evidence",
+      "sha256": "36ee407efde520d0f53192a46a056dd75e8a44bb1c2bade4a404ad7566f6b687",
+      "size_bytes": 6563,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/MAINTAINER_RELEASE_AUTHORIZATION.md",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "9d36ae2b0600004c7e325de55aa4a27d2793e7917f17890269e8f98e4de1e72f",
+      "size_bytes": 1852,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/RELEASE_NOTES_v0.1.0-alpha.md",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "931626937aaf818204c6487f68946fea885940a02c5f337992e7bdd325147056",
+      "size_bytes": 1233,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/WORKFLOW.md",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "624ddf1e82f17d4514f153c3a5d0850650893ca6eccb74c6044017cdb48f8a61",
+      "size_bytes": 873,
+      "status": "CURRENT"
+    },
+    {
+      "path": "pyproject.toml",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "7f89943b2766dfb0ac854b8c96844157743c193a4956f59357e0289973e560da",
+      "size_bytes": 1058,
+      "status": "CURRENT"
+    },
+    {
+      "path": "schemas/gate-decision.schema.json",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "966775f1e42369db2923bfc35056b369c7b334c9bbe947250494799daa86796b",
+      "size_bytes": 614,
+      "status": "CURRENT"
+    },
+    {
+      "path": "schemas/project-state.schema.json",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "0ae9daffda6188a00fe34c3ab77ccc82766a2663c05bd6b33f68db5176d22c95",
+      "size_bytes": 636,
+      "status": "CURRENT"
+    },
+    {
+      "path": "src/arap/__init__.py",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "bcf0ca7f7fc5be566f0b120cdfe1c595b6f6b40eaa7e1077f8959aba6ee20587",
+      "size_bytes": 68,
+      "status": "CURRENT"
+    },
+    {
+      "path": "src/arap/cli.py",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "ced7a5fbd310a646e73c2f08a289a830a7846235fc93af269a46a72af4dcf032",
+      "size_bytes": 3548,
+      "status": "CURRENT"
+    },
+    {
+      "path": "src/arap/core.py",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "67a395c55e4b80ef8816a500849adb4782cdcb2e4b501b5a8b39acfbb6c5b04e",
+      "size_bytes": 9304,
+      "status": "CURRENT"
+    },
+    {
+      "path": "tests/test_core.py",
+      "purpose": "v0.1.0-alpha release evidence",
+      "sha256": "e5e1bc726f4e7f2fc59fb0478eaa8130ab7c9b36f58f85ef7af57cd973ba66f5",
+      "size_bytes": 6040,
+      "status": "CURRENT"
+    }
+  ],
+  "updated_at": "2026-10-17T17:35:14+00:00"
+}
