@@ -25,7 +25,7 @@ This verdict does not authorize a GitHub Release, package publication, announcem
 | IR-05 | README claimed the gate example did not modify the project, although it refreshes the derived decision. | Corrected the user-visible contract. | Documentation review. |
 | IR-06 | CI did not build or install distribution artifacts on a clean runner. | Added a packaging job that builds sdist/wheel, runs `twine check`, installs each artifact in a fresh virtual environment, and exercises the installed CLI. | GitHub Actions packaging job for the reviewed commit. |
 | IR-07 | Packaging metadata used a legacy license table/classifier combination and omitted canonical project URLs. | Added SPDX license metadata and license-file declaration, removed the superseded license classifier, and added canonical URLs. | Clean build and metadata check in CI. |
-| IR-08 | Text line-ending conversion made some artifact hashes differ between Linux and Windows checkouts. | Fixed repository text files to LF through `.gitattributes`, then rebuilt indexes from normalized bytes. | Repository validation on normalized checkout and CI. |
+| IR-08 | Text line-ending conversion made some artifact hashes differ between Linux and Windows checkouts. | Disabled Git text conversion through `.gitattributes` so each checkout preserves the exact committed blob bytes, then rebuilt the indexes. | Repository validation on Windows and Linux CI checkouts. |
 | IR-09 | Distribution version `0.1.0` represented a stable PEP 440 release although the public target is an alpha. | Changed package metadata to the PEP 440 prerelease version `0.1.0a1`; candidate docs retain the human-facing `v0.1.0-alpha` label. | Wheel/sdist metadata check in CI. |
 
 ## Boundary review
