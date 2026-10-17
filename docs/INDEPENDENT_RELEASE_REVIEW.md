@@ -47,3 +47,10 @@ CI verifies source checkout -> sdist/wheel build -> metadata check -> isolated i
 - All indexed local evidence hashes validate from committed bytes.
 
 The maintainer-release-authorization gate intentionally remains `PENDING` until Terry explicitly authorizes release creation or publication.
+
+## Closure evidence
+
+- Remediation commit: `c0d4deb60e68d8ff3afde583d467efa9253c145f`
+- Successful GitHub Actions run: `39053395906`
+- Result: Python 3.10–3.12 test/example matrix PASS; clean sdist/wheel build, metadata check, isolated installs, and installed CLI checks PASS.
+- Unresolved mandatory technical findings: none.

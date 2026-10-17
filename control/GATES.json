@@ -7,16 +7,16 @@
       "status": "PASS"
     },
     {
-      "evidence": [".github/workflows/ci.yml"],
+      "evidence": [".github/workflows/ci.yml", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39053395906"],
       "id": "github-actions-python-3.10-3.12",
       "mandatory": true,
-      "status": "PENDING"
+      "status": "PASS"
     },
     {
-      "evidence": [".github/workflows/ci.yml", "pyproject.toml"],
+      "evidence": [".github/workflows/ci.yml", "pyproject.toml", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39053395906"],
       "id": "clean-package-build-and-install",
       "mandatory": true,
-      "status": "PENDING"
+      "status": "PASS"
     },
     {
       "evidence": ["README.md", "docs/ARCHITECTURE.md", "docs/WORKFLOW.md"],

@@ -24,3 +24,15 @@ This decision does not authorize a package publication, GitHub Release, public a
 
 No release, publication, announcement, private-repository access, or sponsorship application is authorized by this entry.
 
+## 2026-10-18 — Remediation verification
+
+**Decision: BLOCKED only on maintainer release authorization**
+
+- Reviewed remediation commit: `c0d4deb60e68d8ff3afde583d467efa9253c145f`.
+- GitHub Actions run `39053395906` passed the Python 3.10–3.12 matrix and the clean packaging job.
+- The packaging job built sdist and wheel, passed metadata checks, installed each artifact in an isolated environment, and exercised the installed CLI.
+- All independent-review findings IR-01 through IR-09 are resolved with no open mandatory technical finding.
+- `maintainer-release-authorization` remains `PENDING` by design.
+
+The sole authorized next action is to request Terry's explicit release authorization. This entry does not itself authorize release or publication.
+

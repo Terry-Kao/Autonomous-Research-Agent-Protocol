@@ -1,11 +1,10 @@
 {
   "decision": "BLOCKED",
   "failed_or_pending_gates": [
-    "independent-review",
     "maintainer-release-authorization"
   ],
   "policy": "All mandatory gates must PASS. Performance cannot override integrity, safety, provenance, or independence failures.",
-  "reviewed_at": "2026-10-17T16:43:51+00:00",
-  "reviewer": "release-readiness-self-check",
+  "reviewed_at": "2026-10-17T17:22:24+00:00",
+  "reviewer": "OpenAI Codex independent release review",
   "validation_errors": []
 }

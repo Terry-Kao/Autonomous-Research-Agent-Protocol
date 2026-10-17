@@ -51,9 +51,9 @@
     },
     {
       "path": "docs/INDEPENDENT_RELEASE_REVIEW.md",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "3eec9c74d7de4a8ff9112179ef2406a76808c0a3655148506cdf6df37c328831",
-      "size_bytes": 4453,
+      "purpose": "independent review evidence",
+      "sha256": "ef131380888f18b172eddd4578521d19287dfac42fabadb25ba42f8f3f075d23",
+      "size_bytes": 4782,
       "status": "CURRENT"
     },
     {
@@ -113,5 +113,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T17:20:47+00:00"
+  "updated_at": "2026-10-17T17:22:23+00:00"
 }
