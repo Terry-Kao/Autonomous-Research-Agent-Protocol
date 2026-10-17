@@ -1,0 +1,41 @@
+{
+  "gates": [
+    {
+      "evidence": ["tests/test_core.py"],
+      "id": "local-tests",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39050618056"],
+      "id": "github-actions-python-3.10-3.12",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["README.md", "docs/ARCHITECTURE.md", "docs/WORKFLOW.md"],
+      "id": "documentation-contract",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": ["SECURITY.md", ".gitignore"],
+      "id": "public-content-and-secret-boundary",
+      "mandatory": true,
+      "status": "PASS"
+    },
+    {
+      "evidence": [],
+      "id": "independent-review",
+      "mandatory": true,
+      "status": "PENDING"
+    },
+    {
+      "evidence": [],
+      "id": "maintainer-release-authorization",
+      "mandatory": true,
+      "status": "PENDING"
+    }
+  ]
+}
+

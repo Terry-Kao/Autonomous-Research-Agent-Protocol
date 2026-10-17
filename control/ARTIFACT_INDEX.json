@@ -1,0 +1,68 @@
+{
+  "artifacts": [
+    {
+      "path": "LICENSE",
+      "purpose": "run evidence",
+      "sha256": "4efe37e16251f5d45451e3d60b947ebeae1d6d5a82c94b3c63a9e1b1a7d5f6ee",
+      "size_bytes": 1067,
+      "status": "CURRENT"
+    },
+    {
+      "path": "README.md",
+      "purpose": "run evidence",
+      "sha256": "689e90b0ea6f088598f35849ab3d7e438b0a173ebc8daf1395a27334da4e5b68",
+      "size_bytes": 3525,
+      "status": "CURRENT"
+    },
+    {
+      "path": "SECURITY.md",
+      "purpose": "run evidence",
+      "sha256": "a89ab88a5d7e180dd9b6991aec3bdb5e20ad416c282c85d87cdf395e5cfb84cc",
+      "size_bytes": 970,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "purpose": "run evidence",
+      "sha256": "813247d6f7e9f53aa42ded1dcb65fee2c27c1ba884b50d8ca950378dd0f1f162",
+      "size_bytes": 1439,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/WORKFLOW.md",
+      "purpose": "run evidence",
+      "sha256": "624ddf1e82f17d4514f153c3a5d0850650893ca6eccb74c6044017cdb48f8a61",
+      "size_bytes": 873,
+      "status": "CURRENT"
+    },
+    {
+      "path": "pyproject.toml",
+      "purpose": "run evidence",
+      "sha256": "c722b0f57a1a7fcd8e243ba0c00715f354cccf6c388a3712022be08701066b14",
+      "size_bytes": 831,
+      "status": "CURRENT"
+    },
+    {
+      "path": "schemas/gate-decision.schema.json",
+      "purpose": "run evidence",
+      "sha256": "966775f1e42369db2923bfc35056b369c7b334c9bbe947250494799daa86796b",
+      "size_bytes": 614,
+      "status": "CURRENT"
+    },
+    {
+      "path": "schemas/project-state.schema.json",
+      "purpose": "run evidence",
+      "sha256": "0ae9daffda6188a00fe34c3ab77ccc82766a2663c05bd6b33f68db5176d22c95",
+      "size_bytes": 636,
+      "status": "CURRENT"
+    },
+    {
+      "path": "tests/test_core.py",
+      "purpose": "run evidence",
+      "sha256": "d7b3ea506940b3bed51bb575e6e95a87b6647c62c024ebc445931704b5b4dbee",
+      "size_bytes": 2436,
+      "status": "CURRENT"
+    }
+  ],
+  "updated_at": "2026-10-17T16:43:51+00:00"
+}

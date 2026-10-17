@@ -64,9 +64,12 @@ The CLI never runs research code, merges a pull request, uploads data, or claims
 src/arap/                  dependency-free CLI and validation library
 schemas/                   JSON Schemas for interoperable state files
 examples/minimal-project/  runnable domain-neutral example
+control/                   this repository's own state, gates, and evidence index
 docs/                      architecture, workflow, security, roadmap
 .github/                   issue/PR templates and CI
 ```
+
+ARAP governs its own release preparation. The current decision and blockers are recorded in [`control/PROJECT_STATE.json`](control/PROJECT_STATE.json) and [`control/GATE_HISTORY.md`](control/GATE_HISTORY.md).
 
 ## Status
 

@@ -1,0 +1,15 @@
+{
+  "exclusions": [
+    "publishing a package",
+    "creating a public release without maintainer authorization",
+    "claiming adoption without external evidence",
+    "importing any private research content",
+    "submitting any funding or sponsorship application"
+  ],
+  "frozen": true,
+  "frozen_at": "2026-10-18T00:00:00+08:00",
+  "issue": "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/1",
+  "scope": "Prepare and independently review the public v0.1.0-alpha contract, evidence, packaging, and security posture.",
+  "version": 1
+}
+
