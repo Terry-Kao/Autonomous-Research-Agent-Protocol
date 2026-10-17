@@ -1,4 +1,4 @@
-# ARAP v0.1.0-alpha release notes (candidate)
+# ARAP v0.1.0-alpha release notes
 
 ARAP is a dependency-free Python 3.10+ toolkit for representing frozen protocols, evidence indexes, mandatory gates, and explicit `PASS` / `REVISE` / `BLOCKED` decisions in autonomous research workflows.
 
@@ -20,4 +20,4 @@ ARAP is a dependency-free Python 3.10+ toolkit for representing frozen protocols
 
 ## Release boundary
 
-These are candidate notes only. Creating a GitHub Release, publishing to a package index, announcing the project, or submitting a Codex for OSS application requires separate explicit maintainer authorization.
+The maintainer authorized this GitHub pre-release after the committed independent review, remediation, clean packaging checks, and unchanged-head CI verification. This release does not publish to PyPI, claim external adoption, begin broad promotion, or submit a Codex for OSS application.

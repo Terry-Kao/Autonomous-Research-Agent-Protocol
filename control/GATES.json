@@ -43,10 +43,10 @@
       "status": "PASS"
     },
     {
-      "evidence": [],
+      "evidence": ["docs/MAINTAINER_RELEASE_AUTHORIZATION.md"],
       "id": "maintainer-release-authorization",
       "mandatory": true,
-      "status": "PENDING"
+      "status": "PASS"
     }
   ]
 }

@@ -1,10 +1,8 @@
 {
-  "decision": "BLOCKED",
-  "failed_or_pending_gates": [
-    "maintainer-release-authorization"
-  ],
+  "decision": "PASS",
+  "failed_or_pending_gates": [],
   "policy": "All mandatory gates must PASS. Performance cannot override integrity, safety, provenance, or independence failures.",
-  "reviewed_at": "2026-10-17T17:22:24+00:00",
-  "reviewer": "OpenAI Codex independent release review",
+  "reviewed_at": "2026-10-17T17:32:31+00:00",
+  "reviewer": "OpenAI Codex independent review plus Terry maintainer authorization",
   "validation_errors": []
 }

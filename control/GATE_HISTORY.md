@@ -36,3 +36,16 @@ No release, publication, announcement, private-repository access, or sponsorship
 
 The sole authorized next action is to request Terry's explicit release authorization. This entry does not itself authorize release or publication.
 
+## 2026-10-18 — Maintainer release authorization
+
+**Decision: PASS for the bounded GitHub alpha release**
+
+- Terry explicitly authorized updating `maintainer-release-authorization` to `PASS`, merging PR #2, verifying the resulting `main`, and creating the `v0.1.0-alpha` GitHub pre-release.
+- Before this entry, PR #2 remained at head `050d67eacbb38e9307da02b69d2627d79a945202`, was non-draft and mergeable, and Actions run `39053508899` completed successfully for that exact head.
+- No GitHub review submission or unresolved inline review thread existed. The optional GitHub Codex summary still displayed its earlier `running` state and is not represented as an approval or as a frozen mandatory gate.
+- Independent review findings IR-01 through IR-09 remain resolved; no new mandatory finding was present at authorization time.
+- Authorization evidence and exact exclusions are recorded in `docs/MAINTAINER_RELEASE_AUTHORIZATION.md`.
+- Pre-merge Windows verification then exposed two evidence defects: repository-level artifact hashes had been generated from CRLF working-tree bytes rather than committed LF bytes, and the README still showed the removed `arap index --output` option. Both were corrected before merge; CI now validates the repository-level contract so committed-byte drift fails closed.
+
+This authorization is limited to a GitHub pre-release and the public qualification sprint. It does not authorize PyPI publication, broad promotion, fabricated adoption evidence, private-repository access, or submission of a Codex for OSS application.
+

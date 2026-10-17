@@ -22,6 +22,7 @@ jobs:
       - run: python -m pip install --upgrade pip pytest
       - run: python -m pip install -e .
       - run: python -m pytest
+      - run: arap validate .
       - run: arap validate examples/minimal-project
       - run: arap gate examples/minimal-project --reviewer github-actions
 

@@ -38,7 +38,7 @@ python -m pip install -e .
 arap init my-research-project
 cd my-research-project
 arap validate .
-arap index . --output control/ARTIFACT_INDEX.json evidence/result.json
+arap index . evidence/result.json
 arap gate . --reviewer independent-review-bot
 ```
 
