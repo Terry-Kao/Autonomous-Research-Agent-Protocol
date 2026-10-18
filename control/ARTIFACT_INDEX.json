@@ -44,23 +44,23 @@
     },
     {
       "path": "control/GATES.json",
-      "purpose": "v0.1.0-alpha final review evidence",
-      "sha256": "01cb3eca15773e59fe5f441139a5a69f88d6701e139a790c2584bd93e6978a76",
-      "size_bytes": 1866,
+      "purpose": "round-two review remediation evidence",
+      "sha256": "5c0021f0d9ce237a23d95a0519306020ae719ff815c6c79975adb5ca42557457",
+      "size_bytes": 2140,
       "status": "CURRENT"
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "qualification sprint evidence",
-      "sha256": "3fe6bca049b7732860319e8700d51c67ac55f58d43f5c941f1e14a2fa0f6b621",
-      "size_bytes": 6105,
+      "purpose": "round-two review remediation evidence",
+      "sha256": "47aeade5bd7b39ff477f1b9b05fc2d74b58347d0a7f7561ed15addb985f26f1f",
+      "size_bytes": 7264,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "qualification sprint evidence",
-      "sha256": "f6cd93630d92ed74661498df560c743e3ffb916d9262f266e4b9ad1702f6626c",
-      "size_bytes": 384,
+      "purpose": "round-two review remediation evidence",
+      "sha256": "1d93a6416eeae425b8ee293ab708d3d4e337edfa009b7922179356cdd365a158",
+      "size_bytes": 369,
       "status": "CURRENT"
     },
     {
@@ -93,9 +93,9 @@
     },
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
-      "purpose": "qualification sprint evidence",
-      "sha256": "2bbbec00e52f35e6bc793d8ff4f457a1888c58ff8c572c02288b42019c521ddb",
-      "size_bytes": 2780,
+      "purpose": "round-two review remediation evidence",
+      "sha256": "5c47f5d4d73dbd2f5aeca97c520b3c3d9bbe713f411b8c85c2cd6facb89a4adb",
+      "size_bytes": 3467,
       "status": "CURRENT"
     },
     {
@@ -103,6 +103,13 @@
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "931626937aaf818204c6487f68946fea885940a02c5f337992e7bdd325147056",
       "size_bytes": 1233,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/ROUND_TWO_REVIEW.md",
+      "purpose": "round-two review remediation evidence",
+      "sha256": "95f561a7a8e274ebc4ecfb887a3d7b896a10dc16793894c2e12256e6da30e79e",
+      "size_bytes": 2045,
       "status": "CURRENT"
     },
     {
@@ -163,18 +170,18 @@
     },
     {
       "path": "src/arap/core.py",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "67a395c55e4b80ef8816a500849adb4782cdcb2e4b501b5a8b39acfbb6c5b04e",
-      "size_bytes": 9304,
+      "purpose": "round-two review remediation evidence",
+      "sha256": "0dc6ebbcbeeaec97956c6dc33d5e3d1fc073a01a160e293c010975f6508c3492",
+      "size_bytes": 9480,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "e5e1bc726f4e7f2fc59fb0478eaa8130ab7c9b36f58f85ef7af57cd973ba66f5",
-      "size_bytes": 6040,
+      "purpose": "round-two review remediation evidence",
+      "sha256": "2f99f39181f618de9ce812afe4e72c0f1c85d29bca403beea29862bb7b51cc57",
+      "size_bytes": 8568,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T21:21:23+00:00"
+  "updated_at": "2026-10-18T02:14:26+00:00"
 }

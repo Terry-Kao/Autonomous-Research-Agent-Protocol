@@ -63,6 +63,44 @@ def test_index_rejects_external_file(tmp_path: Path) -> None:
         index_artifacts(root, [external])
 
 
+def test_index_rejects_symlinked_index_outside_project(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/result.json"
+    artifact.write_text("{}\n", encoding="utf-8")
+    outside = tmp_path / "outside-index.json"
+    outside.write_text('{"sentinel": true}\n', encoding="utf-8")
+    index_path = root / "control/ARTIFACT_INDEX.json"
+    index_path.unlink()
+    try:
+        index_path.symlink_to(outside)
+    except OSError as error:
+        pytest.skip(f"symlinks unavailable: {error}")
+    with pytest.raises(ValueError, match="path must be inside project"):
+        index_artifacts(root, [Path("evidence/result.json")])
+    assert outside.read_text(encoding="utf-8") == '{"sentinel": true}\n'
+
+
+def test_index_rejects_symlinked_control_directory_outside_project(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/result.json"
+    artifact.write_text("{}\n", encoding="utf-8")
+    outside_control = tmp_path / "outside-control"
+    try:
+        (root / "control").rename(outside_control)
+    except OSError as error:
+        pytest.skip(f"directory symlink setup unavailable: {error}")
+    try:
+        (root / "control").symlink_to(outside_control, target_is_directory=True)
+    except OSError as error:
+        pytest.skip(f"directory symlinks unavailable: {error}")
+    before = (outside_control / "ARTIFACT_INDEX.json").read_text(encoding="utf-8")
+    with pytest.raises(ValueError, match="path must be inside project"):
+        index_artifacts(root, [Path("evidence/result.json")])
+    assert (outside_control / "ARTIFACT_INDEX.json").read_text(encoding="utf-8") == before
+
+
 def test_duplicate_gate_ids_are_invalid(tmp_path: Path) -> None:
     root = tmp_path / "demo"
     init_project(root)
@@ -78,6 +116,27 @@ def test_untrusted_json_shape_is_reported_not_raised(tmp_path: Path) -> None:
     init_project(root)
     (root / "control/GATES.json").write_text('["not-an-object"]', encoding="utf-8")
     assert validate_project(root) == ["all control files must contain a JSON object"]
+
+
+@pytest.mark.parametrize("value", [[], {}])
+def test_project_state_status_shape_is_reported_not_raised(tmp_path: Path, value: object) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    path = root / "control/PROJECT_STATE.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["status"] = value
+    path.write_text(json.dumps(data), encoding="utf-8")
+    errors = validate_project(root)
+    assert "PROJECT_STATE.status must be a non-empty string" in errors
+
+
+def test_deeply_nested_json_is_reported_not_raised(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    (root / "control/GATES.json").write_text("[" * 2000 + "0" + "]" * 2000, encoding="utf-8")
+    errors = validate_project(root)
+    assert len(errors) == 1
+    assert "JSON nesting is too deep" in errors[0]
 
 
 def test_duplicate_json_keys_are_rejected(tmp_path: Path) -> None:

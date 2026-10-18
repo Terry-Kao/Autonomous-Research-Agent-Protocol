@@ -53,6 +53,12 @@
       "id": "post-authorization-review-remediation",
       "mandatory": true,
       "status": "PASS"
+    },
+    {
+      "evidence": ["docs/ROUND_TWO_REVIEW.md", "src/arap/core.py", "tests/test_core.py", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/8"],
+      "id": "round-two-review-remediation",
+      "mandatory": true,
+      "status": "PENDING"
     }
   ]
 }

@@ -32,8 +32,11 @@ def load_json(path: Path) -> Any:
             result[key] = value
         return result
 
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle, object_pairs_hook=reject_duplicates)
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            return json.load(handle, object_pairs_hook=reject_duplicates)
+    except RecursionError as error:
+        raise ValueError(f"JSON nesting is too deep: {path}") from error
 
 
 def write_json(path: Path, value: Any) -> None:
@@ -89,7 +92,7 @@ def validate_project(root: Path) -> list[str]:
     for field in ("project", "phase", "status", "next_action"):
         if not isinstance(state.get(field), str) or not state[field].strip():
             errors.append(f"PROJECT_STATE.{field} must be a non-empty string")
-    if state.get("status") not in DECISIONS | {"PLANNED", "RUNNING"}:
+    if isinstance(state.get("status"), str) and state["status"] not in DECISIONS | {"PLANNED", "RUNNING"}:
         errors.append("PROJECT_STATE.status is not an allowed value")
     if not isinstance(protocol.get("frozen"), bool):
         errors.append("PROTOCOL.frozen must be boolean")
@@ -168,7 +171,7 @@ def validate_project(root: Path) -> list[str]:
 
 
 def index_artifacts(root: Path, paths: list[Path], purpose: str = "run evidence") -> dict[str, Any]:
-    index_path = root / "control/ARTIFACT_INDEX.json"
+    index_path = project_path(root, "control/ARTIFACT_INDEX.json")
     current = load_json(index_path) if index_path.exists() else {"artifacts": []}
     if not isinstance(current, dict) or not isinstance(current.get("artifacts"), list):
         raise ValueError("ARTIFACT_INDEX.artifacts must be a list")

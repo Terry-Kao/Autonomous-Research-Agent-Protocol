@@ -81,3 +81,15 @@ The remaining authorized sequence is final-head CI confirmation, merge, post-mer
 
 Release gates PASS applies to the alpha release. It does not assert OSS program eligibility or authorize application submission.
 
+## 2026-10-18 — Qualification merge and round-two automated review
+
+**Decision: REVISE pending mandatory remediation and exact-head re-review**
+
+- PR #6 merged as `5d27607746d5f4d9e40b064ee89e836675cef3fe` after an expected-head check; main CI run `39071122579` passed all four jobs.
+- Fresh local verification independently passed 17 tests, repository/example hash validation, the synthetic local-CI handoff, clean wheel/sdist builds, metadata checks, and isolated installs.
+- Claude Code (Opus 5.5, medium reasoning) reviewed a clean public checkout in a fresh cloud container and found three mandatory defects: hostile state shape crash, deeply nested JSON crash, and artifact-index write escape through an outside-root symlink.
+- Gemini Flash-Lite could not access the commit-pinned files. Its initial ungrounded response was rejected and its corrected result is `UNSUPPORTED`, not PASS.
+- Issue #8 records the mandatory findings. Remediation is bounded to code, regression tests, exact-head CI and re-review.
+
+No private repository was accessed. This entry does not authorize PyPI, broad promotion, fabricated adoption, or a Codex for OSS submission.
+

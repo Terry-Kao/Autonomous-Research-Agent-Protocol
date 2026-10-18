@@ -1,9 +1,9 @@
 {
-  "next_action": "Collect real external feedback and round-two review via Issue #5; prepare evidence-based application materials for Terry without submitting.",
+  "next_action": "Remediate Claude round-two mandatory findings in issue #8, pass exact-head CI and re-review, then merge the bounded fix PR.",
   "phase": "oss-qualification-sprint",
   "project": "Autonomous Research Agent Protocol",
   "repository": "Terry-Kao/Autonomous-Research-Agent-Protocol",
-  "status": "PASS",
-  "updated_at": "2026-10-18T05:25:00+08:00"
+  "status": "REVISE",
+  "updated_at": "2026-10-18T10:20:00+08:00"
 }
 
