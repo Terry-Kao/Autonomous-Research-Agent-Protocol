@@ -33,4 +33,12 @@ Gemini produced no valid finding or approval. Its failed first response and expl
 
 ## Remediation gate
 
-The round-two remediation gate stays `PENDING` until the fixes and regression tests pass exact-head CI and an exact-head re-review finds no unresolved mandatory issue.
+## Remediation verification
+
+- Remediation head: `c69b59610e5f4acd14a4dd77831b0239a5f3207d`.
+- GitHub Actions run `39089728657`: Python 3.10/3.11/3.12 and package jobs all PASS.
+- Claude Code exact-head re-review: ARAP-01, ARAP-02, ARAP-03 and the follow-up write-path case ARAP-13 all RESOLVED; unresolved mandatory findings: 0; verdict PASS.
+- Claude independently ran 23 tests on each of Python 3.11, 3.12 and 3.13. Linux symlink tests ran without skips. Wheel/sdist builds, metadata checks and six isolated installs passed.
+- Limitations: Claude did not test Python 3.10 or Windows junction/reparse behavior; GitHub CI provides the Python 3.10 run, while Windows junction coverage remains future hardening.
+
+The round-two remediation gate is PASS for the bounded mandatory findings. Non-blocking hardening remains in issue #10.

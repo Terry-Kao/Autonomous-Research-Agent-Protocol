@@ -94,3 +94,15 @@ Release gates PASS applies to the alpha release. It does not assert OSS program 
 
 No private repository was accessed. This entry does not authorize PyPI, broad promotion, fabricated adoption, or a Codex for OSS submission.
 
+## 2026-10-18 — Round-two remediation verification
+
+**Decision: PASS for the bounded mandatory remediation**
+
+- Remediation head `c69b59610e5f4acd14a4dd77831b0239a5f3207d` passed GitHub Actions run `39089728657`: Python 3.10, 3.11, 3.12 and package jobs.
+- Claude Code exact-head re-review independently ran 23 tests on Python 3.11, 3.12 and 3.13, exercised both Linux symlink tests without skips, rebuilt and checked wheel/sdist artifacts, and completed six isolated installs.
+- ARAP-01, ARAP-02, ARAP-03 and follow-up ARAP-13 are RESOLVED; unresolved mandatory findings: 0; Claude verdict: PASS.
+- The earlier GitHub Codex Python 3.12 portability finding was corrected, verified by two successful CI heads, documented in the review thread, and resolved.
+- Non-blocking hardening remains visible in issue #10. Gemini remains `UNSUPPORTED`, not PASS.
+
+This gate does not claim human review, external adoption, program eligibility, or permission to publish to PyPI, promote broadly, or submit a Codex for OSS application.
+

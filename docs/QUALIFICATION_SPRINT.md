@@ -24,7 +24,7 @@ Date: 2026-10-18. Maintainer-operated evidence; no external adoption is inferred
 - Main post-merge CI run `39071122579` passed Python 3.10, 3.11 and 3.12 plus the clean packaging job.
 - A fresh Claude Code review of that merge commit returned `REVISE` with three mandatory hostile-input/path-containment findings, recorded in issue #8 and `docs/ROUND_TWO_REVIEW.md`.
 - Gemini's initial response was rejected as ungrounded; its corrected result is `UNSUPPORTED` because it could not retrieve the commit-pinned files. It is not counted as PASS evidence.
-- The remediation gate is `PENDING` until exact-head CI and re-review complete.
+- Mandatory remediation passed exact-head CI run `39089728657`; Claude's exact-head re-review found zero unresolved mandatory findings and returned PASS. Non-blocking hardening is tracked in issue #10.
 
 ## Fresh-environment README usability validation
 

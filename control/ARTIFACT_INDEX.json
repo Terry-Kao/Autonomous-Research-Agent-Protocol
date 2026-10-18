@@ -45,22 +45,22 @@
     {
       "path": "control/GATES.json",
       "purpose": "round-two review remediation evidence",
-      "sha256": "5c0021f0d9ce237a23d95a0519306020ae719ff815c6c79975adb5ca42557457",
-      "size_bytes": 2140,
+      "sha256": "ad428ba204d872defaec5e9e24fcaf5268d9eb0d9ad8a9338185a7c6bd9a3d76",
+      "size_bytes": 2229,
       "status": "CURRENT"
     },
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "round-two review remediation evidence",
-      "sha256": "0cfab399c37f58e3d371ebc64386a6a4a5bc2f3cc11c274a2e2c512c63dacf8e",
-      "size_bytes": 7569,
+      "sha256": "e3c9fb6c23b3bbb91ee7c4458088940c14652503346aa1fbcb8f13686be37816",
+      "size_bytes": 8593,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
       "purpose": "round-two review remediation evidence",
-      "sha256": "1d93a6416eeae425b8ee293ab708d3d4e337edfa009b7922179356cdd365a158",
-      "size_bytes": 369,
+      "sha256": "581d121d16656515ae624a5e2db8e7116d37c69955359a18798e5720cdb496d9",
+      "size_bytes": 350,
       "status": "CURRENT"
     },
     {
@@ -94,8 +94,8 @@
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
       "purpose": "round-two review remediation evidence",
-      "sha256": "5c47f5d4d73dbd2f5aeca97c520b3c3d9bbe713f411b8c85c2cd6facb89a4adb",
-      "size_bytes": 3467,
+      "sha256": "567a5a375a82fbd736401959ac994fd2d1e4f3c21063c4fa8d4b1ad8d77f52e4",
+      "size_bytes": 3589,
       "status": "CURRENT"
     },
     {
@@ -108,8 +108,8 @@
     {
       "path": "docs/ROUND_TWO_REVIEW.md",
       "purpose": "round-two review remediation evidence",
-      "sha256": "542423d78beb1c13c57d8408eb011bf64aebc41d19aefea3da0642ccab6d4179",
-      "size_bytes": 2440,
+      "sha256": "fd351738a3d4a51ed3a18f391a90cb33b423fbb435a97927d0cef794d0ad3d0f",
+      "size_bytes": 3104,
       "status": "CURRENT"
     },
     {
@@ -183,5 +183,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:20:18+00:00"
+  "updated_at": "2026-10-18T02:24:10+00:00"
 }
