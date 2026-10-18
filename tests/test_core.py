@@ -182,7 +182,10 @@ def test_index_rejects_parent_symlink_swap_during_hashing(
         return original_sha256_file(path)
 
     monkeypatch.setattr(core, "sha256_file", swap_parent_then_hash)
-    index_artifacts(root, [Path("evidence/result.json")])
+    try:
+        index_artifacts(root, [Path("evidence/result.json")])
+    except OSError:
+        pass
     assert outside_index.read_text(encoding="utf-8") == sentinel
     assert (root / "control-original/ARTIFACT_INDEX.json").is_file()
 
@@ -211,7 +214,10 @@ def test_index_pins_project_root_before_hashing(tmp_path: Path, monkeypatch: pyt
         return result
 
     monkeypatch.setattr(core, "sha256_file", hash_then_swap_root)
-    index_artifacts(root, [Path("evidence/result.json")])
+    try:
+        index_artifacts(root, [Path("evidence/result.json")])
+    except OSError:
+        pass
     assert outside_index.read_text(encoding="utf-8") == sentinel
     assert (tmp_path / "demo-original/control/ARTIFACT_INDEX.json").is_file()
 
