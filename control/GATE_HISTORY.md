@@ -151,3 +151,22 @@ The round-two gate is PENDING until the changed head passes the complete CI matr
 - Issue #8 is closed; #5 retains detailed public evidence and feedback instructions, #4 remains open, and #10 records remaining hardening.
 - Public counters were 0 stars / 1 fork / 0 subscribers. Confirmed human usage/adoption remains unestablished. No private/PFM data accessed; no PyPI, application submission or broad promotion performed.
 
+## 2026-10-18 — Formal public introduction authorized
+
+**Decision: PASS for bounded public introduction and feedback collection**
+
+- Terry explicitly authorized a limited, non-spam public introduction for
+  `v0.1.0-alpha` at baseline `5d6541bcecf58d0576785db388af5fad81b726a9`.
+- README and CONTRIBUTING provide clear try, feedback, integration-report, and
+  first-contribution entry points. PUBLIC_INTRODUCTION.md states the alpha scope,
+  limitations, review provenance, and prohibited claims.
+- EXTERNAL_FEEDBACK_LOG.md separates verifiable external contributor evidence
+  from AI/bot review and public counters.
+- External account `yuefdev` opened PR #7 for reserved Issue #4 and disclosed the
+  contribution as AI-assisted. This is a verifiable external contributor PR,
+  not independent human review; merge and integration remain pending CI and
+  normal maintainer review.
+
+This gate does not authorize PyPI publication, a Codex for OSS submission,
+claims of OpenAI endorsement, broad promotion, or access to private/PFM content.
+
