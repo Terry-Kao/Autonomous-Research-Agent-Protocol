@@ -133,7 +133,7 @@ def test_project_state_status_shape_is_reported_not_raised(tmp_path: Path, value
 def test_deeply_nested_json_is_reported_not_raised(tmp_path: Path) -> None:
     root = tmp_path / "demo"
     init_project(root)
-    (root / "control/GATES.json").write_text("[" * 2000 + "0" + "]" * 2000, encoding="utf-8")
+    (root / "control/GATES.json").write_text("[" * 100_000 + "0" + "]" * 100_000, encoding="utf-8")
     errors = validate_project(root)
     assert len(errors) == 1
     assert "JSON nesting is too deep" in errors[0]
