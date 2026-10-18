@@ -13,7 +13,7 @@ Date: 2026-10-18. Maintainer-operated evidence; no external adoption is inferred
 
 - v0.2 roadmap: issue #3
 - Good first issue: #4 (documentation, good first issue)
-- Future independent review entry: #5; no completed Claude/Gemini/human review claimed
+- Independent review entry: #5; completed Claude automated reviews, Gemini UNSUPPORTED, no external human review claimed
 - Description now identifies Python governance toolkit and alpha status; homepage links README; topics: agent-governance, python, reproducibility, research-automation.
 - Maintainer-authored domain-neutral integration: examples/local-ci/run.py
 - Application preparation checklist: docs/CODEX_FOR_OSS_EVIDENCE_CHECKLIST.md
@@ -59,4 +59,6 @@ handle protection. New junction/handle regressions and Windows CI were added;
 the overall remediation remains pending review. GitHub Codex review for
 `0f7ed588114807e84a202d265206911015121802` failed due quota and is not PASS.
 
-Genuine external use and feedback remain unestablished. Automated round-two review is underway and is not external adoption. The repository page showed 0 stars and 0 forks on this date; these are a dated observation, not a permanent count. No PyPI download claim exists. Application materials may be drafted from current evidence, but acceptance and ecosystem importance are not established by engineering checks. Final submission needs Terry's separate authorization.
+Final reviewed code `4d294aca886c8428793335a5c1465c2af1fadd6c` passed seven CI jobs in run `39107670200` and Claude Code (serving Opus 4.8) returned bounded PASS, mandatory findings 0. Windows native runtime tests passed on real Windows CI; Claude independently ran Linux and performed static Windows FFI review. See `docs/ROUND_TWO_REVIEW.md` for commands and limitations. The GitHub Codex final re-review failed due account quota; Gemini remains UNSUPPORTED.
+
+Genuine external use and feedback remain unestablished. Completed automated review is not external adoption. The earlier repository observation was 0 stars and 0 forks; it is a dated observation, not a permanent count. No PyPI download claim exists. CONTRIBUTING.md now provides a public feedback format and keeps issue #4 available for an external contributor. Formal public introduction/outreach is the next Human Gate. Application materials may be drafted from current evidence, but acceptance and ecosystem importance are not established by engineering checks. Final submission needs Terry's separate authorization.

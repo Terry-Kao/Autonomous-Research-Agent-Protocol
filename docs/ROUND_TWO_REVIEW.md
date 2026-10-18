@@ -4,6 +4,19 @@ Date: 2026-10-18. Target: `5d27607746d5f4d9e40b064ee89e836675cef3fe`.
 
 This is AI/automated review evidence. It is not a human approval, external usage, or adoption evidence.
 
+## Current decision — PASS for bounded remediation
+
+- Final reviewed code SHA: `4d294aca886c8428793335a5c1465c2af1fadd6c`.
+- CI [39107670200](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39107670200): seven jobs successful, Windows/Linux Python 3.10–3.12 plus clean packaging and isolated wheel/sdist installation. Linux 3.12: 30 passed, 7 Windows-only skips; Windows 3.12: 32 passed, 5 platform/symlink skips. All seven native Windows tests ran.
+- Claude Code final review: serving model `claude-opus-4-8`, medium effort (earlier rounds used Opus 5.5); new clean public-only checkout at the SHA above. Verdict PASS, unresolved mandatory findings 0. It ran pytest on Python 3.12/3.14 and a clean 3.12 venv (30 passed, 7 Windows-only skips each), POSIX race/failure probes, build/twine, and an isolated package install.
+- Commands included `git clone`, detached `git checkout`, `git rev-parse HEAD`, `git ls-remote`, `python -m pytest`, `arap validate .`, example validation, `arap gate .`, `python -m build`, `python -m twine check`, and isolated installation/CLI checks. Reviewer probes included root/ancestor/final swaps, injected I/O failure, unchanged outside sentinels and descriptor counts.
+- Claude's Windows conclusions are static FFI/design analysis. It did not execute Windows; actual Windows runtime evidence is supplied by CI and the maintainer-operated local tests. Its first review used fresh model context; later re-reviews used fresh checkouts within the same conversation.
+- ARAP-01/02/03/13/14/15/16/17 and all GitHub Codex inline findings were remediated; the threads contain individual resolution evidence. Remaining read/snapshot and hardening ideas stay in issue #10.
+- Gemini Flash-Lite: UNSUPPORTED, as described below. GitHub Codex's final automated re-review failed due account quota; neither result is counted as PASS. The remediation gate requires independent review and verification, not a specific vendor's unavailable optional review service.
+- Genuine external adoption remains unestablished. Formal public introduction is the next Human Gate.
+
+The sections below retain the chronology, including superseded limitations and failed attempts; the current decision above is authoritative for this report.
+
 ## Claude Code
 
 - Tool/model shown: Claude Code, Opus 5.5, medium reasoning.

@@ -132,3 +132,13 @@ The round-two gate is PENDING until the changed head passes the complete CI matr
 - Windows/Linux CI `39107487909` passed all seven jobs at `2bbc6189055c3d2aa4540face29c5d9ccb066565`. Further review of narrow Windows windows replaced path-based child opens with `NtCreateFile` relative to held directory handles, using no-reparse semantics. A single exclusive temporary-file handle is retained through write, flush and rename, eliminating the close/reopen window. Empty-directory in-place reparse and injected rename-failure tests were added. Local result: 28 passed, 9 skipped, including seven native Windows tests.
 - Claude's review of `0f7ed58` returned REVISE for ARAP-17, an overbroad security claim. SECURITY.md now describes protected output writes and explicitly discloses path-based read/snapshot limitations. Native Windows implementation review remains pending; the browser reported a model switch from Opus 5.5 to Opus 4.8, which must be recorded in subsequent review identity.
 
+## 2026-10-18 — Final round-two decision
+
+**Decision: PASS for bounded remediation; pending final evidence-commit CI and merge**
+
+- Reviewed code SHA `4d294aca886c8428793335a5c1465c2af1fadd6c` passed CI `39107670200`, all seven Windows/Linux matrix and packaging jobs.
+- Claude Code, serving `claude-opus-4-8` (medium), independently returned bounded PASS, mandatory 0, from a new clean public checkout. Linux runtime probes/tests/build/install passed; Windows assessment was static, with Windows runtime evidence supplied by local and hosted tests.
+- All GitHub inline threads contain remediation evidence and are resolved. Final GitHub Codex re-review failed due quota; it is preserved as unavailable, not a pass. Gemini remains UNSUPPORTED.
+- Non-blocking work remains in #10. CONTRIBUTING provides public feedback instructions. Genuine external adoption remains unestablished; issue #4 remains reserved for an external contributor.
+- The next Human Gate is formal public introduction/outreach. No PyPI publication, OSS application or broad promotion is authorized by this PASS.
+

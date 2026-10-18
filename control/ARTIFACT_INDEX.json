@@ -51,23 +51,23 @@
     },
     {
       "path": "control/GATES.json",
-      "purpose": "round-two security review remediation",
-      "sha256": "db1f8c6459c839976ade616a0d638e10ad09b172ae4a73540300539fd77ed84a",
-      "size_bytes": 2232,
+      "purpose": "final round-two qualification evidence",
+      "sha256": "706e5aa0cc8193c88cf9ebfd4e772a4aaa94da0c40585a38f0023e1bc14a834d",
+      "size_bytes": 2283,
       "status": "CURRENT"
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "Windows native containment remediation",
-      "sha256": "57a9fd7298f9c8a4607385d1b910c103047adb9ad261a3263a25ff0bd0abc8b9",
-      "size_bytes": 14374,
+      "purpose": "final round-two qualification evidence",
+      "sha256": "591f77e798b582aa710c02f0fd3ab4af7808d15f770d8a01bf9c86157b7d2d87",
+      "size_bytes": 15459,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "round-two security review remediation",
-      "sha256": "13d898a7e387cc9abe4b3f5554f221231b71d4893c1c3012b8486efaaae52aa9",
-      "size_bytes": 349,
+      "purpose": "final round-two qualification evidence",
+      "sha256": "bb2216c4fca31477040a1e3d03f9e68310cb12cd2fa4e7c5ed678be63877aa43",
+      "size_bytes": 388,
       "status": "CURRENT"
     },
     {
@@ -100,9 +100,9 @@
     },
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
-      "purpose": "Windows native containment remediation",
-      "sha256": "10c320382f743efb3fb587232588b27ff03e8ed5d5e6c88602d23f1e31a2d556",
-      "size_bytes": 5139,
+      "purpose": "final round-two qualification evidence",
+      "sha256": "15686e7ed9aabee33fcc3396325ad033262b5a5388730af5062011e83c19cf65",
+      "size_bytes": 5786,
       "status": "CURRENT"
     },
     {
@@ -114,9 +114,9 @@
     },
     {
       "path": "docs/ROUND_TWO_REVIEW.md",
-      "purpose": "Windows native containment remediation",
-      "sha256": "b4a3ba306fd283a7c3377b90fb53541e23916af56b6a97bd42a0121864b80206",
-      "size_bytes": 6681,
+      "purpose": "final round-two qualification evidence",
+      "sha256": "28b8aa78933b89476754973f657538abe2027fdc9c67eb2204ed3f96efc2ab41",
+      "size_bytes": 8952,
       "status": "CURRENT"
     },
     {
@@ -204,5 +204,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T07:26:27+00:00"
+  "updated_at": "2026-10-18T07:32:27+00:00"
 }
