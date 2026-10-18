@@ -31,6 +31,7 @@ credentials, model weights, unpublished findings, or proprietary prompts.
 
 ## Where to respond
 
+- Public introduction and general replies: Discussion #13.
 - General feedback and reproducible reports: Issue #5.
 - First contribution: Issue #4, reserved for an external contributor.
 - Security reports: follow SECURITY.md, not a public issue or discussion.
@@ -57,3 +58,6 @@ At publication time, an external account had opened PR #7 for Issue #4 and
 identified the work as AI-assisted. It is recorded as a verifiable external
 contributor interaction, not as independent human review, and remains subject to
 normal CI and maintainer review.
+
+The public introduction was posted at
+https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/discussions/13.

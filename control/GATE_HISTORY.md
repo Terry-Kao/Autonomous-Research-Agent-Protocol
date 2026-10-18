@@ -170,3 +170,11 @@ The round-two gate is PENDING until the changed head passes the complete CI matr
 This gate does not authorize PyPI publication, a Codex for OSS submission,
 claims of OpenAI endorsement, broad promotion, or access to private/PFM content.
 
+- PR #12 merged the public-introduction documents as
+  `0c3e5c385f86cc2948cc1b90bc4b959162684702`; exact-head and post-merge CI runs
+  `39112863375` and `39112921191` each passed all seven jobs.
+- GitHub Discussions was enabled and the bounded public introduction was posted
+  as Discussion #13. Hacker News required login and the available Reddit account
+  could not post, so no off-GitHub publication or authentication attempt was
+  made.
+

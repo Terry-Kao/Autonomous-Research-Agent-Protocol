@@ -19,6 +19,16 @@ prove offline identity; claims are limited to the observable GitHub evidence.
 | --- | --- | --- | --- | --- | --- |
 | 2026-10-18 | `yuefdev` | [PR #7](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/pull/7), linked to Issue #4 | Contributor disclosed "AI-assisted contribution" | Open; exact-head workflow requires approval and branch is behind current `main` | Verifiable external contributor PR; not independent human review and not yet a merged integration |
 
+## Public introduction locations
+
+| Date | Location | Actor | Purpose |
+| --- | --- | --- | --- |
+| 2026-10-18 | [GitHub Discussion #13](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/discussions/13) | `Terry-Kao` | Bounded public alpha introduction and reproducible feedback request |
+
+No off-GitHub post was made in this round. Hacker News required a login and the
+available Reddit account could not post. No login, account creation, policy
+bypass, or substitute account was attempted.
+
 ## Automated review evidence (excluded from human adoption)
 
 | System | Result | Interpretation |

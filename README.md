@@ -63,7 +63,8 @@ Python 3.10+ environment:
 
 - **Try it:** follow the quick start above and record the tag or commit, operating
   system, Python version, commands, and exit codes.
-- **Give feedback:** use [the public feedback issue](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/5)
+- **Give feedback:** reply to [the public introduction discussion](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/discussions/13)
+  or use [the public feedback issue](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/5)
   for README usability, clean-install, or behavior reports. Use
   [SECURITY.md](SECURITY.md) instead for vulnerabilities.
 - **Report integration results:** describe the workflow you tried, what ARAP
