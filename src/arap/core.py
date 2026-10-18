@@ -4,9 +4,10 @@ import hashlib
 import json
 import os
 import uuid
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterator
 
 REQUIRED_FILES = (
     "control/PROJECT_STATE.json",
@@ -41,23 +42,48 @@ def load_json(path: Path) -> Any:
         raise ValueError(f"JSON nesting is too deep: {path}") from error
 
 
-def write_json(path: Path, value: Any, *, contained_root: Path | None = None) -> None:
+@contextmanager
+def pinned_project_root(root: Path) -> Iterator[tuple[Path, int | None]]:
+    resolved_root = root.resolve()
+    if os.name != "posix":
+        yield resolved_root, None
+        return
+    flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+    root_fd = os.open(resolved_root, flags)
+    try:
+        yield resolved_root, root_fd
+    finally:
+        os.close(root_fd)
+
+
+def write_json(
+    path: Path,
+    value: Any,
+    *,
+    contained_root: Path | None = None,
+    contained_root_fd: int | None = None,
+    relative_path: Path | None = None,
+) -> None:
     try:
         rendered = json.dumps(value, indent=2, sort_keys=True) + "\n"
     except RecursionError as error:
         raise ValueError(f"JSON nesting is too deep to write: {path}") from error
     path.parent.mkdir(parents=True, exist_ok=True)
-    if contained_root is not None and os.name == "posix":
-        resolved_root = contained_root.resolve()
-        resolved_parent = path.parent.resolve()
-        try:
-            resolved_parent.relative_to(resolved_root)
-        except ValueError as error:
-            raise ValueError(f"path must be inside project: {path}") from error
+    if contained_root_fd is not None:
+        if relative_path is None or relative_path.is_absolute() or ".." in relative_path.parts:
+            raise ValueError(f"path must be inside project: {path}")
         flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
-        directory_fd = os.open(path.parent, flags)
+        directory_fd = os.dup(contained_root_fd)
         temporary_name = f".{path.name}.{uuid.uuid4().hex}.tmp"
         try:
+            for component in relative_path.parts[:-1]:
+                try:
+                    next_fd = os.open(component, flags, dir_fd=directory_fd)
+                except FileNotFoundError:
+                    os.mkdir(component, dir_fd=directory_fd)
+                    next_fd = os.open(component, flags, dir_fd=directory_fd)
+                os.close(directory_fd)
+                directory_fd = next_fd
             file_flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
             file_fd = os.open(temporary_name, file_flags, 0o666, dir_fd=directory_fd)
             with os.fdopen(file_fd, "w", encoding="utf-8", newline="\n") as handle:
@@ -65,13 +91,22 @@ def write_json(path: Path, value: Any, *, contained_root: Path | None = None) ->
                 handle.flush()
                 os.fsync(handle.fileno())
             os.replace(temporary_name, path.name, src_dir_fd=directory_fd, dst_dir_fd=directory_fd)
+            os.fsync(directory_fd)
         finally:
             try:
                 os.unlink(temporary_name, dir_fd=directory_fd)
-            except FileNotFoundError:
+            except OSError:
                 pass
-            os.close(directory_fd)
+            finally:
+                os.close(directory_fd)
         return
+    if contained_root is not None:
+        resolved_root = contained_root.resolve()
+        resolved_parent = path.parent.resolve()
+        try:
+            resolved_parent.relative_to(resolved_root)
+        except ValueError as error:
+            raise ValueError(f"path must be inside project: {path}") from error
     with path.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
@@ -202,28 +237,36 @@ def validate_project(root: Path) -> list[str]:
 
 
 def index_artifacts(root: Path, paths: list[Path], purpose: str = "run evidence") -> dict[str, Any]:
-    index_path = project_path(root, "control/ARTIFACT_INDEX.json")
-    current = load_json(index_path) if index_path.exists() else {"artifacts": []}
-    if not isinstance(current, dict) or not isinstance(current.get("artifacts"), list):
-        raise ValueError("ARTIFACT_INDEX.artifacts must be a list")
-    by_path: dict[str, dict[str, Any]] = {}
-    for item in current["artifacts"]:
-        if not isinstance(item, dict) or not isinstance(item.get("path"), str):
-            raise ValueError("each existing artifact requires a string path")
-        by_path[item["path"]] = item
-    for path in paths:
-        resolved = project_path(root, path, must_exist=True)
-        relative = resolved.relative_to(root.resolve()).as_posix()
-        by_path[relative] = {
-            "path": relative,
-            "purpose": purpose,
-            "sha256": sha256_file(resolved),
-            "size_bytes": resolved.stat().st_size,
-            "status": "CURRENT",
-        }
-    result = {"updated_at": utc_now(), "artifacts": sorted(by_path.values(), key=lambda item: item["path"])}
-    write_json(index_path, result, contained_root=root)
-    return result
+    with pinned_project_root(root) as (resolved_root, root_fd):
+        index_relative = Path("control/ARTIFACT_INDEX.json")
+        index_path = project_path(resolved_root, index_relative)
+        current = load_json(index_path) if index_path.exists() else {"artifacts": []}
+        if not isinstance(current, dict) or not isinstance(current.get("artifacts"), list):
+            raise ValueError("ARTIFACT_INDEX.artifacts must be a list")
+        by_path: dict[str, dict[str, Any]] = {}
+        for item in current["artifacts"]:
+            if not isinstance(item, dict) or not isinstance(item.get("path"), str):
+                raise ValueError("each existing artifact requires a string path")
+            by_path[item["path"]] = item
+        for path in paths:
+            resolved = project_path(resolved_root, path, must_exist=True)
+            relative = resolved.relative_to(resolved_root).as_posix()
+            by_path[relative] = {
+                "path": relative,
+                "purpose": purpose,
+                "sha256": sha256_file(resolved),
+                "size_bytes": resolved.stat().st_size,
+                "status": "CURRENT",
+            }
+        result = {"updated_at": utc_now(), "artifacts": sorted(by_path.values(), key=lambda item: item["path"])}
+        write_json(
+            index_path,
+            result,
+            contained_root=resolved_root,
+            contained_root_fd=root_fd,
+            relative_path=index_relative,
+        )
+        return result
 
 
 def evaluate_gates(root: Path, reviewer: str) -> dict[str, Any]:

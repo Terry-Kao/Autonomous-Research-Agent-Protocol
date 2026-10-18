@@ -4,7 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from .core import evaluate_gates, index_artifacts, project_path, utc_now, validate_project, write_json
+from .core import evaluate_gates, index_artifacts, pinned_project_root, project_path, utc_now, validate_project, write_json
 
 
 def init_project(root: Path) -> None:
@@ -71,9 +71,17 @@ def main(argv: list[str] | None = None) -> int:
             result = index_artifacts(args.directory, args.files, args.purpose)
             print(f"indexed {len(result['artifacts'])} artifact(s)")
         elif args.command == "gate":
-            result = evaluate_gates(args.directory, args.reviewer)
-            output = project_path(args.directory, args.output or Path("control/GATE_DECISION.json"))
-            write_json(output, result, contained_root=args.directory)
+            with pinned_project_root(args.directory) as (resolved_root, root_fd):
+                result = evaluate_gates(resolved_root, args.reviewer)
+                output = project_path(resolved_root, args.output or Path("control/GATE_DECISION.json"))
+                relative_output = output.relative_to(resolved_root)
+                write_json(
+                    output,
+                    result,
+                    contained_root=resolved_root,
+                    contained_root_fd=root_fd,
+                    relative_path=relative_output,
+                )
             print(result["decision"])
             return 0 if result["decision"] == "PASS" else 2
     except (OSError, ValueError) as error:

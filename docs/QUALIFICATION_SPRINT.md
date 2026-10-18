@@ -27,6 +27,7 @@ Date: 2026-10-18. Maintainer-operated evidence; no external adoption is inferred
 - Mandatory remediation passed exact-head CI run `39089728657`; Claude's exact-head re-review found zero unresolved mandatory findings and returned PASS. Non-blocking hardening is tracked in issue #10.
 - GitHub Codex then found two P2 follow-ups at `c69b59610e5f4acd14a4dd77831b0239a5f3207d`: a Python 3.14-sensitive test and a parent-symlink swap during index writing. The deterministic test and no-follow directory-descriptor remediation passed CI run `39090252768` at `f3cc6c5eef665bb722ffdac43d2217b635afe0f6`.
 - Claude Code independently re-reviewed that head from a clean public clone: 24 tests on each Python 3.10–3.14, targeted race probes, clean build/check, ten isolated installs, zero mandatory findings, final verdict PASS. Its analogous non-blocking gate-output race, file-mode note and documentation drift were corrected before the final gate decision.
+- Later GitHub Codex exact-head probes required stronger POSIX race containment: the original root is now pinned before long-running work, every output ancestor is traversed descriptor-relatively without following symlinks, directory metadata is synced, and cleanup cannot leak the held descriptor. Windows concurrent junction/reparse protection remains an explicit unsupported limitation and backlog item; ordinary Windows behavior remains covered by the hosted Python matrix only where CI provides it.
 
 ## Fresh-environment README usability validation
 

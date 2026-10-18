@@ -182,9 +182,38 @@ def test_index_rejects_parent_symlink_swap_during_hashing(
         return original_sha256_file(path)
 
     monkeypatch.setattr(core, "sha256_file", swap_parent_then_hash)
-    with pytest.raises((OSError, ValueError)):
-        index_artifacts(root, [Path("evidence/result.json")])
+    index_artifacts(root, [Path("evidence/result.json")])
     assert outside_index.read_text(encoding="utf-8") == sentinel
+    assert (root / "control-original/ARTIFACT_INDEX.json").is_file()
+
+
+@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
+def test_index_pins_project_root_before_hashing(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/result.json"
+    artifact.write_text("{}\n", encoding="utf-8")
+    outside_root = tmp_path / "outside-root"
+    (outside_root / "control").mkdir(parents=True)
+    outside_index = outside_root / "control/ARTIFACT_INDEX.json"
+    sentinel = '{"sentinel": true}\n'
+    outside_index.write_text(sentinel, encoding="utf-8")
+    original_sha256_file = core.sha256_file
+    swapped = False
+
+    def hash_then_swap_root(path: Path) -> str:
+        nonlocal swapped
+        result = original_sha256_file(path)
+        if path == artifact.resolve() and not swapped:
+            swapped = True
+            root.rename(tmp_path / "demo-original")
+            root.symlink_to(outside_root, target_is_directory=True)
+        return result
+
+    monkeypatch.setattr(core, "sha256_file", hash_then_swap_root)
+    index_artifacts(root, [Path("evidence/result.json")])
+    assert outside_index.read_text(encoding="utf-8") == sentinel
+    assert (tmp_path / "demo-original/control/ARTIFACT_INDEX.json").is_file()
 
 
 def test_duplicate_json_keys_are_rejected(tmp_path: Path) -> None:
@@ -235,14 +264,38 @@ def test_gate_rejects_parent_symlink_swap_before_write(
     outside_decision.write_text(sentinel, encoding="utf-8")
     original_write_json = core.write_json
 
-    def swap_parent_then_write(path: Path, value: object, *, contained_root: Path | None = None) -> None:
+    def swap_parent_then_write(path: Path, value: object, **kwargs: object) -> None:
         (root / "control").rename(root / "control-original")
         (root / "control").symlink_to(outside_control, target_is_directory=True)
-        original_write_json(path, value, contained_root=contained_root)
+        original_write_json(path, value, **kwargs)
 
     monkeypatch.setattr(cli, "write_json", swap_parent_then_write)
     assert main(["gate", str(root), "--reviewer", "reviewer"]) == 2
     assert outside_decision.read_text(encoding="utf-8") == sentinel
+
+
+@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
+def test_gate_rejects_intermediate_parent_symlink_swap(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    (root / "a/b").mkdir(parents=True)
+    outside = tmp_path / "outside"
+    (outside / "b").mkdir(parents=True)
+    outside_result = outside / "b/result.json"
+    sentinel = '{"sentinel": true}\n'
+    outside_result.write_text(sentinel, encoding="utf-8")
+    original_write_json = core.write_json
+
+    def swap_ancestor_then_write(path: Path, value: object, **kwargs: object) -> None:
+        (root / "a").rename(root / "a-original")
+        (root / "a").symlink_to(outside, target_is_directory=True)
+        original_write_json(path, value, **kwargs)
+
+    monkeypatch.setattr(cli, "write_json", swap_ancestor_then_write)
+    assert main(["gate", str(root), "--reviewer", "reviewer", "--output", "a/b/result.json"]) == 2
+    assert outside_result.read_text(encoding="utf-8") == sentinel
 
 
 @pytest.mark.parametrize("field,value", [("id", []), ("status", {})])

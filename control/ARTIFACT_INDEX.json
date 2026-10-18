@@ -52,8 +52,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "round-two security review remediation",
-      "sha256": "2c711486f5c84f5e2f43bfa1398e802a80133c6f22c1c0d966322ab72bc26943",
-      "size_bytes": 10565,
+      "sha256": "75998cf687d98a8a610e933e0c8d8bdfeda24f3369d13f03133a4e0b3ccd3cdd",
+      "size_bytes": 11264,
       "status": "CURRENT"
     },
     {
@@ -94,8 +94,8 @@
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
       "purpose": "round-two security review remediation",
-      "sha256": "c8057df22752604ef8424db03471904e2a9130c2567ae20dcbe7297c5b05a03a",
-      "size_bytes": 4256,
+      "sha256": "e714f0e8c9021e59eab245b093a73782314fa428f34487fafd333791ff55b79f",
+      "size_bytes": 4760,
       "status": "CURRENT"
     },
     {
@@ -108,8 +108,8 @@
     {
       "path": "docs/ROUND_TWO_REVIEW.md",
       "purpose": "round-two security review remediation",
-      "sha256": "ebaf069386c4ef29dd4fe828382b41f32574e96cc1b71f802e7552272245f454",
-      "size_bytes": 4819,
+      "sha256": "ce4c208c4f4a1ce200eaeac233c8736c81707e7090eea8fce355aa80051e489b",
+      "size_bytes": 5550,
       "status": "CURRENT"
     },
     {
@@ -164,24 +164,24 @@
     {
       "path": "src/arap/cli.py",
       "purpose": "round-two security review remediation",
-      "sha256": "95d7cbe71b548985775f5b878ad8194286b707867bd8f634cdf3858cd1f3115b",
-      "size_bytes": 3579,
+      "sha256": "9b2d6ccdff5f5527f2611159be921cf57bbcf90a856aa2229a8e924e9871713a",
+      "size_bytes": 3936,
       "status": "CURRENT"
     },
     {
       "path": "src/arap/core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "0effc5618cb3009854d9352f081bd1c6fa82d0cc43ddec63a0d5507e984d8233",
-      "size_bytes": 10956,
+      "sha256": "25124173ad57166e810421a945a27db8085a55128564d29c92e1198b6893f89d",
+      "size_bytes": 12514,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "de3ba09850177f1905a0ed2a82554ae3f469a2e56be0633d5c9bbfc8f81c29fb",
-      "size_bytes": 11618,
+      "sha256": "681a7a6ca9d01ebed3c8dfbbfbfcb48e3e4ca92303fa1cad49a98d737fbc8def",
+      "size_bytes": 13955,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:36:54+00:00"
+  "updated_at": "2026-10-18T02:43:18+00:00"
 }
