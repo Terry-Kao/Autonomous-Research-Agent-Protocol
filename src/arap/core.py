@@ -77,29 +77,14 @@ def write_json(
     except RecursionError as error:
         raise ValueError(f"JSON nesting is too deep to write: {path}") from error
     if contained_root_fd is not None and os.name == "nt":
-        from .windows_io import locked_directory, replace_in_directory
+        from .windows_io import atomic_write, locked_child
         if contained_root is None or relative_path is None or relative_path.is_absolute() or ".." in relative_path.parts:
             raise ValueError(f"path must be inside project: {path}")
         with ExitStack() as locks:
-            parent = contained_root
             parent_handle = contained_root_fd
             for component in relative_path.parts[:-1]:
-                parent = parent / component
-                parent.mkdir(exist_ok=True)
-                parent_handle = locks.enter_context(locked_directory(parent))
-            destination = parent / relative_path.name
-            temporary = parent / f".{relative_path.name}.{uuid.uuid4().hex}.tmp"
-            try:
-                with temporary.open("x", encoding="utf-8", newline="\n") as handle:
-                    handle.write(rendered)
-                    handle.flush()
-                    os.fsync(handle.fileno())
-                replace_in_directory(temporary, relative_path.name, parent_handle)
-            finally:
-                try:
-                    temporary.unlink()
-                except OSError:
-                    pass
+                parent_handle = locks.enter_context(locked_child(parent_handle, component))
+            atomic_write(parent_handle, relative_path.name, rendered)
         return
     if contained_root_fd is not None:
         if relative_path is None or relative_path.is_absolute() or ".." in relative_path.parts:

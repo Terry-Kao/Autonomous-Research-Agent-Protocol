@@ -44,9 +44,9 @@
     },
     {
       "path": "SECURITY.md",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "63bfbca9fbe0cb92045dc24418ec7a20faf49d869332ee53fb0a423e2c4d7ae6",
-      "size_bytes": 1105,
+      "purpose": "Windows native containment remediation",
+      "sha256": "f7bc91ce0fbbea94e0421111891b947951db5fdc15a514fd8a0d2548bfb6c219",
+      "size_bytes": 2002,
       "status": "CURRENT"
     },
     {
@@ -59,8 +59,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "Windows native containment remediation",
-      "sha256": "954bb790f498af4cc23c9e99b74825d80cc98985b7b5b04dba1a26e7245e10c3",
-      "size_bytes": 13466,
+      "sha256": "57a9fd7298f9c8a4607385d1b910c103047adb9ad261a3263a25ff0bd0abc8b9",
+      "size_bytes": 14374,
       "status": "CURRENT"
     },
     {
@@ -178,15 +178,15 @@
     {
       "path": "src/arap/core.py",
       "purpose": "Windows native containment remediation",
-      "sha256": "deb5633bc92274a6c48cc34e42d727ababcdce1f051dd88437e454e4a1aa27ba",
-      "size_bytes": 14414,
+      "sha256": "64bb376a20e8ae171b0d100274c465e220404fe9d1908428537411fd938e5b73",
+      "size_bytes": 13781,
       "status": "CURRENT"
     },
     {
       "path": "src/arap/windows_io.py",
       "purpose": "Windows native containment remediation",
-      "sha256": "dadfcb7bf25b5eec70e74c4f396796b94ee6eb47b069886e91207a6e6196d5ad",
-      "size_bytes": 3381,
+      "sha256": "f11f32dba9ba27aab4f2b6ac7b4a66ea1322c37af9607e7df129c0aa2770b98c",
+      "size_bytes": 6644,
       "status": "CURRENT"
     },
     {
@@ -199,10 +199,10 @@
     {
       "path": "tests/test_windows_io.py",
       "purpose": "Windows native containment remediation",
-      "sha256": "4395ee873d5feee52f595a541a2d6996f1a182b6a8a221eae03dad74753eba48",
-      "size_bytes": 2417,
+      "sha256": "1a0cb42613750ee718d416b09f52fd65ff1b54695239f69ef1c11f5ee57a3e69",
+      "size_bytes": 5410,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T07:23:33+00:00"
+  "updated_at": "2026-10-18T07:26:27+00:00"
 }
