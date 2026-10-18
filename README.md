@@ -56,6 +56,26 @@ arap gate examples/minimal-project --reviewer local-review
 
 For a fresh synthetic CI handoff that preserves missing-review blockers, see [examples/local-ci](examples/local-ci/README.md).
 
+## Try it and report back
+
+ARAP is an alpha. The most useful feedback is a reproducible report from a clean
+Python 3.10+ environment:
+
+- **Try it:** follow the quick start above and record the tag or commit, operating
+  system, Python version, commands, and exit codes.
+- **Give feedback:** use [the public feedback issue](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/5)
+  for README usability, clean-install, or behavior reports. Use
+  [SECURITY.md](SECURITY.md) instead for vulnerabilities.
+- **Report integration results:** describe the workflow you tried, what ARAP
+  governed, expected and actual results, and a small domain-neutral reproduction.
+- **Make a first contribution:** [Issue #4](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/4)
+  is reserved for an external contributor. Please coordinate on the issue before
+  starting overlapping work.
+
+See [PUBLIC_INTRODUCTION.md](PUBLIC_INTRODUCTION.md) for the public alpha scope and
+[EXTERNAL_FEEDBACK_LOG.md](EXTERNAL_FEEDBACK_LOG.md) for the evidence policy and
+verified feedback log. Stars and forks are observations, not proof of use.
+
 ## What the CLI does
 
 - `arap init DIR` creates a governed project with state, protocol, gates, and evidence folders.
@@ -81,6 +101,10 @@ ARAP governs its own release preparation. The current decision and blockers are 
 ## Status
 
 `v0.1.0-alpha` is intended for evaluation and contributor feedback. The first release will stabilize the schemas and CLI contract after public review. See [ROADMAP.md](ROADMAP.md) and [docs/RELEASE_PLAN.md](docs/RELEASE_PLAN.md).
+
+External human adoption is not claimed merely from automated review, stars, or
+forks. Verifiable external issues, pull requests, discussion comments, or
+integration reports are recorded separately from AI/bot review.
 
 ## Contributing and security
 
