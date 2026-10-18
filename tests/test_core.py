@@ -181,7 +181,7 @@ def test_index_rejects_parent_symlink_swap_during_hashing(
         return original_sha256_file(path)
 
     monkeypatch.setattr(core, "sha256_file", swap_parent_then_hash)
-    with pytest.raises(OSError):
+    with pytest.raises((OSError, ValueError)):
         index_artifacts(root, [Path("evidence/result.json")])
     assert outside_index.read_text(encoding="utf-8") == sentinel
 

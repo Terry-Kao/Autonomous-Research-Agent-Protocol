@@ -52,8 +52,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "round-two security review remediation",
-      "sha256": "a999b8c0b8746640e0662a98187aa1f7e3abddfb48e41abd84df589b55712771",
-      "size_bytes": 9482,
+      "sha256": "f0b60e796a3e5137dac2ceabbc99fa2604b8f33b82c71e56cbc6d063190c1e83",
+      "size_bytes": 9875,
       "status": "CURRENT"
     },
     {
@@ -178,10 +178,10 @@
     {
       "path": "tests/test_core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "57806cc7c5203fa0c4f337c2ea789add3a6ee7e363b35d346f9f08e01cfdfa7f",
-      "size_bytes": 10495,
+      "sha256": "7a345afcaa1c16406aa0177d70282a24d7c38a14df12710aefcb7215b42db4d7",
+      "size_bytes": 10509,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:27:44+00:00"
+  "updated_at": "2026-10-18T02:29:08+00:00"
 }

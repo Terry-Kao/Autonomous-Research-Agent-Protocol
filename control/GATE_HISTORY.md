@@ -117,3 +117,5 @@ This gate does not claim human review, external adoption, program eligibility, o
 
 The round-two gate is PENDING until the changed head passes the complete CI matrix and exact-head automated re-review.
 
+- First remediation CI run `39090194783` preserved a useful failed attempt: packaging passed, while all Python jobs exposed an overly narrow regression assertion that expected only `OSError`; the implementation safely rejected the exchanged parent with `ValueError` before opening it. The test now accepts either fail-closed error and still requires the outside sentinel to remain unchanged.
+
