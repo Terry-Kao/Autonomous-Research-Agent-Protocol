@@ -104,7 +104,6 @@ def test_index_rejects_symlinked_control_directory_outside_project(tmp_path: Pat
     assert (outside_control / "ARTIFACT_INDEX.json").read_text(encoding="utf-8") == before
 
 
-@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
 def test_index_replaces_internal_index_symlink_not_its_target(tmp_path: Path) -> None:
     root = tmp_path / "demo"
     init_project(root)
@@ -114,7 +113,10 @@ def test_index_replaces_internal_index_symlink_not_its_target(tmp_path: Path) ->
     alternate = root / "control/alternate.json"
     alternate.write_text(index_path.read_text(encoding="utf-8"), encoding="utf-8")
     index_path.unlink()
-    index_path.symlink_to(alternate)
+    try:
+        index_path.symlink_to(alternate)
+    except OSError as error:
+        pytest.skip(f"symlinks unavailable: {error}")
     before = alternate.read_text(encoding="utf-8")
     index_artifacts(root, [Path("evidence/result.json")])
     assert not index_path.is_symlink()
@@ -378,6 +380,16 @@ def test_resolution_loop_becomes_validation_error(tmp_path: Path, monkeypatch: p
 
     monkeypatch.setattr(Path, "resolve", fail_loop)
     assert any("could not be resolved safely" in error for error in validate_project(root))
+
+
+def test_root_resolution_loop_is_a_controlled_cli_error(tmp_path: Path) -> None:
+    root = tmp_path / "loop"
+    try:
+        root.symlink_to(root, target_is_directory=True)
+    except OSError as error:
+        pytest.skip(f"symlinks unavailable: {error}")
+    assert main(["index", str(root), "artifact.json"]) == 2
+    assert main(["gate", str(root), "--reviewer", "reviewer"]) == 2
 
 
 def test_runtime_version_matches_alpha_metadata() -> None:

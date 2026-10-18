@@ -44,7 +44,10 @@ def load_json(path: Path) -> Any:
 
 @contextmanager
 def pinned_project_root(root: Path) -> Iterator[tuple[Path, int | None]]:
-    resolved_root = root.resolve()
+    try:
+        resolved_root = root.resolve()
+    except RuntimeError as error:
+        raise ValueError(f"path could not be resolved safely: {root}") from error
     if os.name != "posix":
         yield resolved_root, None
         return
@@ -81,6 +84,7 @@ def write_json(
                     next_fd = os.open(component, flags, dir_fd=directory_fd)
                 except FileNotFoundError:
                     os.mkdir(component, dir_fd=directory_fd)
+                    os.fsync(directory_fd)
                     next_fd = os.open(component, flags, dir_fd=directory_fd)
                 os.close(directory_fd)
                 directory_fd = next_fd
@@ -102,13 +106,18 @@ def write_json(
         return
     if contained_root is not None:
         resolved_root = contained_root.resolve()
-        resolved_parent = path.parent.resolve()
+        destination = resolved_root / relative_path if relative_path is not None else path
+        resolved_parent = destination.parent.resolve()
         try:
             resolved_parent.relative_to(resolved_root)
         except ValueError as error:
             raise ValueError(f"path must be inside project: {path}") from error
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8", newline="\n") as handle:
+        if destination.is_symlink():
+            destination.unlink()
+    else:
+        destination = path
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with destination.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
 
