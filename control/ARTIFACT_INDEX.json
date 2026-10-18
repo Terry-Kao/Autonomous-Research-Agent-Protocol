@@ -9,9 +9,9 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "purpose": "qualification sprint evidence",
-      "sha256": "55bfaafd6a1458d6ddeec509a7a3d59c84bcc69585fac4537f61059c3a9bff54",
-      "size_bytes": 1354,
+      "purpose": "Windows native containment remediation",
+      "sha256": "1a873433e225bf001a4f951e67d63c5fde6ac0a1b3ad282c59d8cd7489d7a4ed",
+      "size_bytes": 1401,
       "status": "CURRENT"
     },
     {
@@ -22,6 +22,20 @@
       "status": "CURRENT"
     },
     {
+      "path": "CONTRIBUTING.md",
+      "purpose": "run evidence",
+      "sha256": "8d7acebf3fa3ae3ffab66249043348c427542e01b6655a5cb49dc3362b8b8c9c",
+      "size_bytes": 2480,
+      "status": "CURRENT"
+    },
+    {
+      "path": "EXTERNAL_FEEDBACK_LOG.md",
+      "purpose": "run evidence",
+      "sha256": "e3fb6c4b517e3c74c4c31cfcd81f69ae4b24287cd91fdded34909b2d1979ffbf",
+      "size_bytes": 2119,
+      "status": "CURRENT"
+    },
+    {
       "path": "LICENSE",
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "4efe37e16251f5d45451e3d60b947ebeae1d6d5a82c94b3c63a9e1b1a7d5f6ee",
@@ -29,38 +43,45 @@
       "status": "CURRENT"
     },
     {
+      "path": "PUBLIC_INTRODUCTION.md",
+      "purpose": "run evidence",
+      "sha256": "0d8a25e6184925470d01547f0540d4ece3bb7ba712f40a161827cc5f34325661",
+      "size_bytes": 2761,
+      "status": "CURRENT"
+    },
+    {
       "path": "README.md",
-      "purpose": "qualification sprint evidence",
-      "sha256": "299205a567d803de39f7a77d5670e52dc8bcceafce1b7ef5f20a7f0d0b07833f",
-      "size_bytes": 4071,
+      "purpose": "run evidence",
+      "sha256": "f6548279566374019748113d3829047b11f1b27e6e8d04aa6225c9d0349eb01f",
+      "size_bytes": 5437,
       "status": "CURRENT"
     },
     {
       "path": "SECURITY.md",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "63bfbca9fbe0cb92045dc24418ec7a20faf49d869332ee53fb0a423e2c4d7ae6",
-      "size_bytes": 1105,
+      "purpose": "Windows native containment remediation",
+      "sha256": "f7bc91ce0fbbea94e0421111891b947951db5fdc15a514fd8a0d2548bfb6c219",
+      "size_bytes": 2002,
       "status": "CURRENT"
     },
     {
       "path": "control/GATES.json",
-      "purpose": "v0.1.0-alpha final review evidence",
-      "sha256": "01cb3eca15773e59fe5f441139a5a69f88d6701e139a790c2584bd93e6978a76",
-      "size_bytes": 1866,
+      "purpose": "final round-two qualification evidence",
+      "sha256": "706e5aa0cc8193c88cf9ebfd4e772a4aaa94da0c40585a38f0023e1bc14a834d",
+      "size_bytes": 2283,
       "status": "CURRENT"
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "qualification sprint evidence",
-      "sha256": "3fe6bca049b7732860319e8700d51c67ac55f58d43f5c941f1e14a2fa0f6b621",
-      "size_bytes": 6105,
+      "purpose": "run evidence",
+      "sha256": "771b2840aae9bb0ca861ccd9851a5eca089bc54376a0969c09fa3bec27aefe1c",
+      "size_bytes": 17447,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "qualification sprint evidence",
-      "sha256": "f6cd93630d92ed74661498df560c743e3ffb916d9262f266e4b9ad1702f6626c",
-      "size_bytes": 384,
+      "purpose": "run evidence",
+      "sha256": "bb1d3c0625bb210e709c32b9b037147675cd1fc0df189640070c970f8603700f",
+      "size_bytes": 420,
       "status": "CURRENT"
     },
     {
@@ -93,9 +114,9 @@
     },
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
-      "purpose": "qualification sprint evidence",
-      "sha256": "2bbbec00e52f35e6bc793d8ff4f457a1888c58ff8c572c02288b42019c521ddb",
-      "size_bytes": 2780,
+      "purpose": "completed post-merge qualification evidence",
+      "sha256": "9213668534809c88e701404ad7221cbb234edd699782df0c18bc76331125656b",
+      "size_bytes": 7237,
       "status": "CURRENT"
     },
     {
@@ -103,6 +124,13 @@
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "931626937aaf818204c6487f68946fea885940a02c5f337992e7bdd325147056",
       "size_bytes": 1233,
+      "status": "CURRENT"
+    },
+    {
+      "path": "docs/ROUND_TWO_REVIEW.md",
+      "purpose": "final round-two qualification evidence",
+      "sha256": "28b8aa78933b89476754973f657538abe2027fdc9c67eb2204ed3f96efc2ab41",
+      "size_bytes": 8952,
       "status": "CURRENT"
     },
     {
@@ -156,25 +184,39 @@
     },
     {
       "path": "src/arap/cli.py",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "ced7a5fbd310a646e73c2f08a289a830a7846235fc93af269a46a72af4dcf032",
-      "size_bytes": 3548,
+      "purpose": "round-two security review remediation",
+      "sha256": "9b2d6ccdff5f5527f2611159be921cf57bbcf90a856aa2229a8e924e9871713a",
+      "size_bytes": 3936,
       "status": "CURRENT"
     },
     {
       "path": "src/arap/core.py",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "67a395c55e4b80ef8816a500849adb4782cdcb2e4b501b5a8b39acfbb6c5b04e",
-      "size_bytes": 9304,
+      "purpose": "Windows native containment remediation",
+      "sha256": "64bb376a20e8ae171b0d100274c465e220404fe9d1908428537411fd938e5b73",
+      "size_bytes": 13781,
+      "status": "CURRENT"
+    },
+    {
+      "path": "src/arap/windows_io.py",
+      "purpose": "Windows native containment remediation",
+      "sha256": "f11f32dba9ba27aab4f2b6ac7b4a66ea1322c37af9607e7df129c0aa2770b98c",
+      "size_bytes": 6644,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "e5e1bc726f4e7f2fc59fb0478eaa8130ab7c9b36f58f85ef7af57cd973ba66f5",
-      "size_bytes": 6040,
+      "purpose": "round-two security review remediation",
+      "sha256": "fa6723234cb426df0d833670c382041b292e1db55051196767e8891a60ea56fe",
+      "size_bytes": 16087,
+      "status": "CURRENT"
+    },
+    {
+      "path": "tests/test_windows_io.py",
+      "purpose": "Windows native containment remediation",
+      "sha256": "1a0cb42613750ee718d416b09f52fd65ff1b54695239f69ef1c11f5ee57a3e69",
+      "size_bytes": 5410,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-17T21:21:23+00:00"
+  "updated_at": "2026-10-18T08:47:52+00:00"
 }
