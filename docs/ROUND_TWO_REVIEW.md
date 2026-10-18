@@ -17,6 +17,8 @@ Mandatory findings recorded in issue #8:
 2. `ARAP-02`: deeply nested control JSON could raise an uncaught `RecursionError`.
 3. `ARAP-03`: `arap index` did not resolve its artifact-index output before writing, allowing an outside-root write through a symlinked index file or control directory.
 
+Exact-head re-review confirmed those three reproductions fail closed after remediation, then found one remaining ARAP-02 write-path case: deeply nested JSON could raise during serialization after the destination was opened, truncating the existing index. The remediation now serializes successfully before opening the destination and returns a controlled error without altering the prior file.
+
 The same review listed lower-severity hardening ideas. They are non-blocking backlog candidates and do not replace the three mandatory remediations.
 
 ## Gemini

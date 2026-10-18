@@ -90,6 +90,7 @@ Release gates PASS applies to the alpha release. It does not assert OSS program 
 - Claude Code (Opus 5.5, medium reasoning) reviewed a clean public checkout in a fresh cloud container and found three mandatory defects: hostile state shape crash, deeply nested JSON crash, and artifact-index write escape through an outside-root symlink.
 - Gemini Flash-Lite could not access the commit-pinned files. Its initial ungrounded response was rejected and its corrected result is `UNSUPPORTED`, not PASS.
 - Issue #8 records the mandatory findings. Remediation is bounded to code, regression tests, exact-head CI and re-review.
+- Exact-head re-review confirmed the initial three reproductions fail closed, then exposed a remaining deep-JSON serialization path that could truncate an existing index before raising. The same bounded remediation now serializes before opening the destination and preserves the previous file on failure.
 
 No private repository was accessed. This entry does not authorize PyPI, broad promotion, fabricated adoption, or a Codex for OSS submission.
 

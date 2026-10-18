@@ -52,8 +52,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "round-two review remediation evidence",
-      "sha256": "47aeade5bd7b39ff477f1b9b05fc2d74b58347d0a7f7561ed15addb985f26f1f",
-      "size_bytes": 7264,
+      "sha256": "0cfab399c37f58e3d371ebc64386a6a4a5bc2f3cc11c274a2e2c512c63dacf8e",
+      "size_bytes": 7569,
       "status": "CURRENT"
     },
     {
@@ -108,8 +108,8 @@
     {
       "path": "docs/ROUND_TWO_REVIEW.md",
       "purpose": "round-two review remediation evidence",
-      "sha256": "95f561a7a8e274ebc4ecfb887a3d7b896a10dc16793894c2e12256e6da30e79e",
-      "size_bytes": 2045,
+      "sha256": "542423d78beb1c13c57d8408eb011bf64aebc41d19aefea3da0642ccab6d4179",
+      "size_bytes": 2440,
       "status": "CURRENT"
     },
     {
@@ -171,17 +171,17 @@
     {
       "path": "src/arap/core.py",
       "purpose": "round-two review remediation evidence",
-      "sha256": "0dc6ebbcbeeaec97956c6dc33d5e3d1fc073a01a160e293c010975f6508c3492",
-      "size_bytes": 9480,
+      "sha256": "4496b4015b80dd561b728eeab243ab5f48276298c0fa80568fb4f9601a0843ac",
+      "size_bytes": 9635,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
       "purpose": "round-two review remediation evidence",
-      "sha256": "cc9559da25478c93dec013e58b10ba5af7fccd7ab9f01dc95c51b1618db9870e",
-      "size_bytes": 8574,
+      "sha256": "c3c797e7c19d548ee1301f004dc444fff64e7ce5e8119ce4cfcd0411e951a2bc",
+      "size_bytes": 9045,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:15:44+00:00"
+  "updated_at": "2026-10-18T02:20:18+00:00"
 }

@@ -40,9 +40,13 @@ def load_json(path: Path) -> Any:
 
 
 def write_json(path: Path, value: Any) -> None:
+    try:
+        rendered = json.dumps(value, indent=2, sort_keys=True) + "\n"
+    except RecursionError as error:
+        raise ValueError(f"JSON nesting is too deep to write: {path}") from error
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as handle:
-        handle.write(json.dumps(value, indent=2, sort_keys=True) + "\n")
+        handle.write(rendered)
 
 
 def sha256_file(path: Path) -> str:

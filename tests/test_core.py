@@ -6,7 +6,7 @@ import pytest
 import arap
 from arap.cli import init_project
 from arap.cli import main
-from arap.core import evaluate_gates, index_artifacts, load_json, sha256_file, validate_project
+from arap.core import evaluate_gates, index_artifacts, load_json, sha256_file, validate_project, write_json
 
 
 def test_init_is_valid(tmp_path: Path) -> None:
@@ -137,6 +137,18 @@ def test_deeply_nested_json_is_reported_not_raised(tmp_path: Path) -> None:
     errors = validate_project(root)
     assert len(errors) == 1
     assert "JSON nesting is too deep" in errors[0]
+
+
+def test_deeply_nested_json_write_does_not_truncate_existing_file(tmp_path: Path) -> None:
+    path = tmp_path / "index.json"
+    original = '{"sentinel": true}\n'
+    path.write_text(original, encoding="utf-8")
+    nested: object = 0
+    for _ in range(10_000):
+        nested = [nested]
+    with pytest.raises(ValueError, match="JSON nesting is too deep to write"):
+        write_json(path, nested)
+    assert path.read_text(encoding="utf-8") == original
 
 
 def test_duplicate_json_keys_are_rejected(tmp_path: Path) -> None:
