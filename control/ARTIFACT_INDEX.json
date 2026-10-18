@@ -58,16 +58,16 @@
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "final round-two qualification evidence",
-      "sha256": "591f77e798b582aa710c02f0fd3ab4af7808d15f770d8a01bf9c86157b7d2d87",
-      "size_bytes": 15459,
+      "purpose": "completed post-merge qualification evidence",
+      "sha256": "1087c4afeb3d287cbe6c9ec262f3c4edcaded640a5475e66a2c32b94f494b00e",
+      "size_bytes": 16408,
       "status": "CURRENT"
     },
     {
       "path": "control/PROJECT_STATE.json",
-      "purpose": "final round-two qualification evidence",
-      "sha256": "bb2216c4fca31477040a1e3d03f9e68310cb12cd2fa4e7c5ed678be63877aa43",
-      "size_bytes": 388,
+      "purpose": "completed post-merge qualification evidence",
+      "sha256": "69f46bdef82dd0406211936b9fe025c24c01222b5f8495cad4ca38ab87115682",
+      "size_bytes": 401,
       "status": "CURRENT"
     },
     {
@@ -100,9 +100,9 @@
     },
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
-      "purpose": "final round-two qualification evidence",
-      "sha256": "15686e7ed9aabee33fcc3396325ad033262b5a5388730af5062011e83c19cf65",
-      "size_bytes": 5786,
+      "purpose": "completed post-merge qualification evidence",
+      "sha256": "9213668534809c88e701404ad7221cbb234edd699782df0c18bc76331125656b",
+      "size_bytes": 7237,
       "status": "CURRENT"
     },
     {
@@ -204,5 +204,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T07:32:27+00:00"
+  "updated_at": "2026-10-18T07:37:11+00:00"
 }

@@ -142,3 +142,12 @@ The round-two gate is PENDING until the changed head passes the complete CI matr
 - Non-blocking work remains in #10. CONTRIBUTING provides public feedback instructions. Genuine external adoption remains unestablished; issue #4 remains reserved for an external contributor.
 - The next Human Gate is formal public introduction/outreach. No PyPI publication, OSS application or broad promotion is authorized by this PASS.
 
+## 2026-10-18 — Post-merge verification completed
+
+**Decision: PASS; await public-introduction Human Gate**
+
+- PR #9 merged as `74b7bd0ace6d55046a362ffd7388b63ff6baeddb` under expected-head lease `a843c6db060dd74b533c3801dc175fbb007dfa5c` after its CI `39108054249` and Claude evidence verification passed; unresolved review threads: 0.
+- Main push CI `39108181654` passed every step in all seven jobs. Additional local Windows execution at the merge passed tests, root/example validation, local-CI, clean build/twine, and two new isolated wheel/sdist installs. Tracked working files remained unchanged.
+- Issue #8 is closed; #5 retains detailed public evidence and feedback instructions, #4 remains open, and #10 records remaining hardening.
+- Public counters were 0 stars / 1 fork / 0 subscribers. Confirmed human usage/adoption remains unestablished. No private/PFM data accessed; no PyPI, application submission or broad promotion performed.
+

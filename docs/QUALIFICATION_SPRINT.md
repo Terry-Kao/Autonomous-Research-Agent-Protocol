@@ -2,6 +2,18 @@
 
 Date: 2026-10-18. Maintainer-operated evidence; no external adoption is inferred.
 
+## Current completion state
+
+- PR #6 merged as `5d27607746d5f4d9e40b064ee89e836675cef3fe`; main CI `39071122579` passed.
+- Security remediation PR #9 merged as `74b7bd0ace6d55046a362ffd7388b63ff6baeddb`; [main push CI 39108181654](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39108181654) passed all seven jobs (Windows/Linux Python 3.10–3.12 and packaging).
+- Main verification: tests, root/example hashes, local-CI integration, clean wheel/sdist build, metadata checks and isolated installs PASS. Additional Windows local verification at that merge: 28 passed, 9 platform/privilege skips; all seven native Windows regressions passed.
+- Round-two mandatory remediation and Claude review complete. Gemini remains UNSUPPORTED; GitHub Codex final review was unavailable due quota. No passing result is fabricated for either.
+- Issue #8 closed by PR #9. #5 remains the public feedback entry; #3/#10 retain non-blocking roadmap items. #4 remains open for an external contributor.
+- Public GitHub API observation on 2026-10-18: 0 stars, 1 fork, 0 subscribers. A fork alone does not establish real usage; confirmed external human feedback/adoption remains 0 / unestablished.
+- Next Human Gate: Terry's formal public introduction/outreach. PyPI publication and Codex for OSS submission remain separately unauthorized.
+
+The dated sections below preserve the sprint history; this section states the current completion state.
+
 ## Release baseline
 
 - PR #2 merge: cd080c754051f70532553586baaa145654a4cc2c
