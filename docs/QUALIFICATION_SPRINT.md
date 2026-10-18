@@ -53,4 +53,10 @@ This is automated maintainer usability validation, not a real external user's te
 
 ## Remaining evidence
 
+Windows native remediation supersedes the earlier unsupported/non-blocking
+classification: Terry requested preserved Windows functionality with native
+handle protection. New junction/handle regressions and Windows CI were added;
+the overall remediation remains pending review. GitHub Codex review for
+`0f7ed588114807e84a202d265206911015121802` failed due quota and is not PASS.
+
 Genuine external use and feedback remain unestablished. Automated round-two review is underway and is not external adoption. The repository page showed 0 stars and 0 forks on this date; these are a dated observation, not a permanent count. No PyPI download claim exists. Application materials may be drafted from current evidence, but acceptance and ecosystem importance are not established by engineering checks. Final submission needs Terry's separate authorization.

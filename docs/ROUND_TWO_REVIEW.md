@@ -55,3 +55,21 @@ Final PASS requires exact-head CI and a fresh exact-head automated review with n
 Claude Code (Opus 5.5, medium reasoning) then re-reviewed `f3cc6c5eef665bb722ffdac43d2217b635afe0f6` from a new clean public clone. It ran all 24 tests without skips on Python 3.10–3.14, performed targeted race/failure probes, built and checked both distributions, and completed ten isolated installs. Its final verdict was PASS with no mandatory findings. It identified one analogous non-blocking gate-output parent race (ARAP-14), a file-mode change, and documentation drift; all three were corrected before the final gate decision.
 
 GitHub Codex exact-head reviews then exercised narrower concurrent swaps. The POSIX implementation now pins the original project root before hashing or gate evaluation, traverses every output ancestor relative to that descriptor without following symlinks, syncs both the file and directory, and closes the held descriptor even when cleanup fails. Regression tests cover root replacement, final-parent replacement, intermediate-ancestor replacement, and both index and gate output paths. Equivalent Windows descriptor-relative semantics are not available in this implementation; Windows concurrent junction/reparse races remain explicitly unsupported and tracked as non-blocking hardening rather than being represented as tested.
+
+## Windows remediation and review availability
+
+The preceding Windows exception was not accepted as a completed security fix.
+Terry explicitly chose preserving Windows functionality with native protection.
+The new implementation pins directories with native handles that deny delete
+sharing, rejects junction/reparse directories, and holds every ancestor through
+the write. It serializes and fsyncs a temporary file, then renames it relative to
+the held destination-directory handle. Local Windows tests verify blocked root
+renames, blocked held-parent renames, and rejection of exchanged junctions at
+both a direct and an intermediate output ancestor. CI now includes Windows and
+Linux on Python 3.10–3.12. This implementation remains pending independent review.
+
+The GitHub Codex review request for `0f7ed588114807e84a202d265206911015121802`
+failed because the account code-review quota was exhausted (PR comment
+6244954486). It is not a passing review. Claude's initial review began in fresh
+model context; subsequent re-reviews used new clean public checkouts within the
+same conversation, a limitation retained explicitly.

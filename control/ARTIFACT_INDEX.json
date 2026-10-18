@@ -9,9 +9,9 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "purpose": "qualification sprint evidence",
-      "sha256": "55bfaafd6a1458d6ddeec509a7a3d59c84bcc69585fac4537f61059c3a9bff54",
-      "size_bytes": 1354,
+      "purpose": "Windows native containment remediation",
+      "sha256": "1a873433e225bf001a4f951e67d63c5fde6ac0a1b3ad282c59d8cd7489d7a4ed",
+      "size_bytes": 1401,
       "status": "CURRENT"
     },
     {
@@ -19,6 +19,13 @@
       "purpose": "v0.1.0-alpha release evidence",
       "sha256": "a3761e953bee7cec6cdfc6687061db6532f2a005bc5ca9806eb51faacdc51445",
       "size_bytes": 125,
+      "status": "CURRENT"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "purpose": "Windows native containment remediation",
+      "sha256": "c0e56d4ba82e22ecb8f321390a171ea5972f578e8efa72165f9a2334e8128a11",
+      "size_bytes": 1413,
       "status": "CURRENT"
     },
     {
@@ -51,9 +58,9 @@
     },
     {
       "path": "control/GATE_HISTORY.md",
-      "purpose": "round-two security review remediation",
-      "sha256": "8f2a693999325cdb72aec53084cd4cd30de270d4f51d718f6a1dd6abc684d4b7",
-      "size_bytes": 12595,
+      "purpose": "Windows native containment remediation",
+      "sha256": "954bb790f498af4cc23c9e99b74825d80cc98985b7b5b04dba1a26e7245e10c3",
+      "size_bytes": 13466,
       "status": "CURRENT"
     },
     {
@@ -93,9 +100,9 @@
     },
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
-      "purpose": "round-two security review remediation",
-      "sha256": "e714f0e8c9021e59eab245b093a73782314fa428f34487fafd333791ff55b79f",
-      "size_bytes": 4760,
+      "purpose": "Windows native containment remediation",
+      "sha256": "10c320382f743efb3fb587232588b27ff03e8ed5d5e6c88602d23f1e31a2d556",
+      "size_bytes": 5139,
       "status": "CURRENT"
     },
     {
@@ -107,9 +114,9 @@
     },
     {
       "path": "docs/ROUND_TWO_REVIEW.md",
-      "purpose": "round-two security review remediation",
-      "sha256": "ce4c208c4f4a1ce200eaeac233c8736c81707e7090eea8fce355aa80051e489b",
-      "size_bytes": 5550,
+      "purpose": "Windows native containment remediation",
+      "sha256": "b4a3ba306fd283a7c3377b90fb53541e23916af56b6a97bd42a0121864b80206",
+      "size_bytes": 6681,
       "status": "CURRENT"
     },
     {
@@ -170,9 +177,16 @@
     },
     {
       "path": "src/arap/core.py",
-      "purpose": "round-two security review remediation",
-      "sha256": "02391944b9d483642099c851461aa2417f66201424e3731acbcf8763d52d3f1f",
-      "size_bytes": 12965,
+      "purpose": "Windows native containment remediation",
+      "sha256": "deb5633bc92274a6c48cc34e42d727ababcdce1f051dd88437e454e4a1aa27ba",
+      "size_bytes": 14414,
+      "status": "CURRENT"
+    },
+    {
+      "path": "src/arap/windows_io.py",
+      "purpose": "Windows native containment remediation",
+      "sha256": "dadfcb7bf25b5eec70e74c4f396796b94ee6eb47b069886e91207a6e6196d5ad",
+      "size_bytes": 3381,
       "status": "CURRENT"
     },
     {
@@ -181,7 +195,14 @@
       "sha256": "fa6723234cb426df0d833670c382041b292e1db55051196767e8891a60ea56fe",
       "size_bytes": 16087,
       "status": "CURRENT"
+    },
+    {
+      "path": "tests/test_windows_io.py",
+      "purpose": "Windows native containment remediation",
+      "sha256": "4395ee873d5feee52f595a541a2d6996f1a182b6a8a221eae03dad74753eba48",
+      "size_bytes": 2417,
+      "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:56:58+00:00"
+  "updated_at": "2026-10-18T07:23:33+00:00"
 }

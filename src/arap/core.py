@@ -4,7 +4,7 @@ import hashlib
 import json
 import os
 import uuid
-from contextlib import contextmanager
+from contextlib import ExitStack, contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterator
@@ -48,6 +48,11 @@ def pinned_project_root(root: Path) -> Iterator[tuple[Path, int | None]]:
         resolved_root = root.resolve()
     except RuntimeError as error:
         raise ValueError(f"path could not be resolved safely: {root}") from error
+    if os.name == "nt":
+        from .windows_io import locked_directory
+        with locked_directory(resolved_root) as handle:
+            yield resolved_root, handle
+        return
     if os.name != "posix":
         yield resolved_root, None
         return
@@ -71,6 +76,31 @@ def write_json(
         rendered = json.dumps(value, indent=2, sort_keys=True) + "\n"
     except RecursionError as error:
         raise ValueError(f"JSON nesting is too deep to write: {path}") from error
+    if contained_root_fd is not None and os.name == "nt":
+        from .windows_io import locked_directory, replace_in_directory
+        if contained_root is None or relative_path is None or relative_path.is_absolute() or ".." in relative_path.parts:
+            raise ValueError(f"path must be inside project: {path}")
+        with ExitStack() as locks:
+            parent = contained_root
+            parent_handle = contained_root_fd
+            for component in relative_path.parts[:-1]:
+                parent = parent / component
+                parent.mkdir(exist_ok=True)
+                parent_handle = locks.enter_context(locked_directory(parent))
+            destination = parent / relative_path.name
+            temporary = parent / f".{relative_path.name}.{uuid.uuid4().hex}.tmp"
+            try:
+                with temporary.open("x", encoding="utf-8", newline="\n") as handle:
+                    handle.write(rendered)
+                    handle.flush()
+                    os.fsync(handle.fileno())
+                replace_in_directory(temporary, relative_path.name, parent_handle)
+            finally:
+                try:
+                    temporary.unlink()
+                except OSError:
+                    pass
+        return
     if contained_root_fd is not None:
         if relative_path is None or relative_path.is_absolute() or ".." in relative_path.parts:
             raise ValueError(f"path must be inside project: {path}")
