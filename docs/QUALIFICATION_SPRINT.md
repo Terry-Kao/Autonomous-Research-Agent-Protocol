@@ -25,6 +25,8 @@ Date: 2026-10-18. Maintainer-operated evidence; no external adoption is inferred
 - A fresh Claude Code review of that merge commit returned `REVISE` with three mandatory hostile-input/path-containment findings, recorded in issue #8 and `docs/ROUND_TWO_REVIEW.md`.
 - Gemini's initial response was rejected as ungrounded; its corrected result is `UNSUPPORTED` because it could not retrieve the commit-pinned files. It is not counted as PASS evidence.
 - Mandatory remediation passed exact-head CI run `39089728657`; Claude's exact-head re-review found zero unresolved mandatory findings and returned PASS. Non-blocking hardening is tracked in issue #10.
+- GitHub Codex then found two P2 follow-ups at `c69b59610e5f4acd14a4dd77831b0239a5f3207d`: a Python 3.14-sensitive test and a parent-symlink swap during index writing. The deterministic test and no-follow directory-descriptor remediation passed CI run `39090252768` at `f3cc6c5eef665bb722ffdac43d2217b635afe0f6`.
+- Claude Code independently re-reviewed that head from a clean public clone: 24 tests on each Python 3.10–3.14, targeted race probes, clean build/check, ten isolated installs, zero mandatory findings, final verdict PASS. Its analogous non-blocking gate-output race, file-mode note and documentation drift were corrected before the final gate decision.
 
 ## Fresh-environment README usability validation
 

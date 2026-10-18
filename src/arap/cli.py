@@ -73,7 +73,7 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == "gate":
             result = evaluate_gates(args.directory, args.reviewer)
             output = project_path(args.directory, args.output or Path("control/GATE_DECISION.json"))
-            write_json(output, result)
+            write_json(output, result, contained_root=args.directory)
             print(result["decision"])
             return 0 if result["decision"] == "PASS" else 2
     except (OSError, ValueError) as error:

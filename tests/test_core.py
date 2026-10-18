@@ -5,6 +5,7 @@ from pathlib import Path
 import pytest
 
 import arap
+import arap.cli as cli
 import arap.core as core
 from arap.cli import init_project
 from arap.cli import main
@@ -219,6 +220,29 @@ def test_gate_output_cannot_escape_project(tmp_path: Path) -> None:
     init_project(root)
     assert main(["gate", str(root), "--reviewer", "reviewer", "--output", str(tmp_path / "outside.json")]) == 2
     assert not (tmp_path / "outside.json").exists()
+
+
+@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
+def test_gate_rejects_parent_symlink_swap_before_write(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    outside_control = tmp_path / "outside-control"
+    outside_control.mkdir()
+    outside_decision = outside_control / "GATE_DECISION.json"
+    sentinel = '{"sentinel": true}\n'
+    outside_decision.write_text(sentinel, encoding="utf-8")
+    original_write_json = core.write_json
+
+    def swap_parent_then_write(path: Path, value: object, *, contained_root: Path | None = None) -> None:
+        (root / "control").rename(root / "control-original")
+        (root / "control").symlink_to(outside_control, target_is_directory=True)
+        original_write_json(path, value, contained_root=contained_root)
+
+    monkeypatch.setattr(cli, "write_json", swap_parent_then_write)
+    assert main(["gate", str(root), "--reviewer", "reviewer"]) == 2
+    assert outside_decision.read_text(encoding="utf-8") == sentinel
 
 
 @pytest.mark.parametrize("field,value", [("id", []), ("status", {})])

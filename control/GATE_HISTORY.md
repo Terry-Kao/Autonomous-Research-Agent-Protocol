@@ -118,4 +118,7 @@ This gate does not claim human review, external adoption, program eligibility, o
 The round-two gate is PENDING until the changed head passes the complete CI matrix and exact-head automated re-review.
 
 - First remediation CI run `39090194783` preserved a useful failed attempt: packaging passed, while all Python jobs exposed an overly narrow regression assertion that expected only `OSError`; the implementation safely rejected the exchanged parent with `ValueError` before opening it. The test now accepts either fail-closed error and still requires the outside sentinel to remain unchanged.
+- Corrected exact head `f3cc6c5eef665bb722ffdac43d2217b635afe0f6` passed CI run `39090252768` across Python 3.10–3.12 and packaging.
+- Claude Code (Opus 5.5, medium reasoning) re-reviewed that exact head from a clean public clone, ran 24 tests without skips on each Python 3.10–3.14, targeted race and injected-failure probes, clean build/check, and ten isolated installs. Verdict: PASS; mandatory findings: 0.
+- Claude's analogous non-blocking ARAP-14 gate-output race was corrected by applying the same contained write. The atomic file mode now follows the process umask, and the review documents were reconciled. Final exact-head CI and automated review remain required before PASS.
 

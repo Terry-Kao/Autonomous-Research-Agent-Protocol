@@ -52,8 +52,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "round-two security review remediation",
-      "sha256": "f0b60e796a3e5137dac2ceabbc99fa2604b8f33b82c71e56cbc6d063190c1e83",
-      "size_bytes": 9875,
+      "sha256": "2c711486f5c84f5e2f43bfa1398e802a80133c6f22c1c0d966322ab72bc26943",
+      "size_bytes": 10565,
       "status": "CURRENT"
     },
     {
@@ -93,9 +93,9 @@
     },
     {
       "path": "docs/QUALIFICATION_SPRINT.md",
-      "purpose": "round-two review remediation evidence",
-      "sha256": "567a5a375a82fbd736401959ac994fd2d1e4f3c21063c4fa8d4b1ad8d77f52e4",
-      "size_bytes": 3589,
+      "purpose": "round-two security review remediation",
+      "sha256": "c8057df22752604ef8424db03471904e2a9130c2567ae20dcbe7297c5b05a03a",
+      "size_bytes": 4256,
       "status": "CURRENT"
     },
     {
@@ -108,8 +108,8 @@
     {
       "path": "docs/ROUND_TWO_REVIEW.md",
       "purpose": "round-two security review remediation",
-      "sha256": "6f3d39c59576dec360631f3a8e82ce7b0daa87809e434462c117db0d0b9efc9d",
-      "size_bytes": 4185,
+      "sha256": "ebaf069386c4ef29dd4fe828382b41f32574e96cc1b71f802e7552272245f454",
+      "size_bytes": 4819,
       "status": "CURRENT"
     },
     {
@@ -163,25 +163,25 @@
     },
     {
       "path": "src/arap/cli.py",
-      "purpose": "v0.1.0-alpha release evidence",
-      "sha256": "ced7a5fbd310a646e73c2f08a289a830a7846235fc93af269a46a72af4dcf032",
-      "size_bytes": 3548,
+      "purpose": "round-two security review remediation",
+      "sha256": "95d7cbe71b548985775f5b878ad8194286b707867bd8f634cdf3858cd1f3115b",
+      "size_bytes": 3579,
       "status": "CURRENT"
     },
     {
       "path": "src/arap/core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "4d09fd59d145cdfd400a1dd886dab041d07d2e1421847d3a924da885fc07bbf2",
+      "sha256": "0effc5618cb3009854d9352f081bd1c6fa82d0cc43ddec63a0d5507e984d8233",
       "size_bytes": 10956,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "7a345afcaa1c16406aa0177d70282a24d7c38a14df12710aefcb7215b42db4d7",
-      "size_bytes": 10509,
+      "sha256": "de3ba09850177f1905a0ed2a82554ae3f469a2e56be0633d5c9bbfc8f81c29fb",
+      "size_bytes": 11618,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:29:08+00:00"
+  "updated_at": "2026-10-18T02:36:54+00:00"
 }

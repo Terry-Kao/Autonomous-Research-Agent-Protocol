@@ -31,8 +31,6 @@ The same review listed lower-severity hardening ideas. They are non-blocking bac
 
 Gemini produced no valid finding or approval. Its failed first response and explicit `UNSUPPORTED` correction are retained as limitations, not converted into PASS evidence.
 
-## Remediation gate
-
 ## Remediation verification
 
 - Remediation head: `c69b59610e5f4acd14a4dd77831b0239a5f3207d`.
@@ -41,7 +39,7 @@ Gemini produced no valid finding or approval. Its failed first response and expl
 - Claude independently ran 23 tests on each of Python 3.11, 3.12 and 3.13. Linux symlink tests ran without skips. Wheel/sdist builds, metadata checks and six isolated installs passed.
 - Limitations: Claude did not test Python 3.10 or Windows junction/reparse behavior; GitHub CI provides the Python 3.10 run, while Windows junction coverage remains future hardening.
 
-The round-two remediation gate is PASS for the bounded mandatory findings. Non-blocking hardening remains in issue #10.
+The bounded findings at `c69b59610e5f4acd14a4dd77831b0239a5f3207d` passed, but a later exact-head GitHub Codex review returned the overall round-two gate to `PENDING` for the follow-up below. Non-blocking hardening remains in issue #10.
 
 ## GitHub Codex exact-head follow-up
 
@@ -53,3 +51,5 @@ GitHub Codex reviewed `c69b59610e5f4acd14a4dd77831b0239a5f3207d` and opened two 
 The regression now injects `RecursionError` deterministically. On POSIX, contained JSON writes use a no-follow directory descriptor, create and fsync a temporary file relative to that held descriptor, and replace the destination relative to the same descriptor. A hostile test exchanges `control/` during artifact hashing and verifies that the outside index remains unchanged. Windows retains the serialize-before-open behavior; Windows junction/reparse race hardening remains an explicit platform limitation.
 
 Final PASS requires exact-head CI and a fresh exact-head automated review with no unresolved mandatory finding.
+
+Claude Code (Opus 5.5, medium reasoning) then re-reviewed `f3cc6c5eef665bb722ffdac43d2217b635afe0f6` from a new clean public clone. It ran all 24 tests without skips on Python 3.10–3.14, performed targeted race/failure probes, built and checked both distributions, and completed ten isolated installs. Its final verdict was PASS with no mandatory findings. It identified one analogous non-blocking gate-output parent race (ARAP-14), a file-mode change, and documentation drift; all three were corrected before the final gate decision.

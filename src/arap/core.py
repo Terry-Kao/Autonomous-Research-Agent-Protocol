@@ -59,7 +59,7 @@ def write_json(path: Path, value: Any, *, contained_root: Path | None = None) ->
         temporary_name = f".{path.name}.{uuid.uuid4().hex}.tmp"
         try:
             file_flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
-            file_fd = os.open(temporary_name, file_flags, 0o600, dir_fd=directory_fd)
+            file_fd = os.open(temporary_name, file_flags, 0o666, dir_fd=directory_fd)
             with os.fdopen(file_fd, "w", encoding="utf-8", newline="\n") as handle:
                 handle.write(rendered)
                 handle.flush()
