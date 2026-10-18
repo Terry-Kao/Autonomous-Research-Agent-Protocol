@@ -52,8 +52,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "round-two security review remediation",
-      "sha256": "2057da5a5b02381a892c8e7ad7f1a842a7ecaf652375b31c7ea3ed88dd086d00",
-      "size_bytes": 11663,
+      "sha256": "23c5db4cdc400b3a055ffc03501480a66acba1b6f12586754dd0818c3bb12c77",
+      "size_bytes": 12092,
       "status": "CURRENT"
     },
     {
@@ -171,17 +171,17 @@
     {
       "path": "src/arap/core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "25124173ad57166e810421a945a27db8085a55128564d29c92e1198b6893f89d",
-      "size_bytes": 12514,
+      "sha256": "2d2a610f1e33136f2c54664ab955ce627b006a245bb173a819ac7c8c9c5339d0",
+      "size_bytes": 12574,
       "status": "CURRENT"
     },
     {
       "path": "tests/test_core.py",
       "purpose": "round-two security review remediation",
-      "sha256": "a07a38a50dd1186dcd3a781192815484d0ad40358cef38b9a0b2550945ef211c",
-      "size_bytes": 14047,
+      "sha256": "ee529918141fdf966f510c85b6c58a2887dd43d2e26fb84f66cc0f0a2d630e93",
+      "size_bytes": 15710,
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T02:44:27+00:00"
+  "updated_at": "2026-10-18T02:48:40+00:00"
 }

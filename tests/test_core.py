@@ -104,6 +104,42 @@ def test_index_rejects_symlinked_control_directory_outside_project(tmp_path: Pat
     assert (outside_control / "ARTIFACT_INDEX.json").read_text(encoding="utf-8") == before
 
 
+@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
+def test_index_replaces_internal_index_symlink_not_its_target(tmp_path: Path) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/result.json"
+    artifact.write_text("{}\n", encoding="utf-8")
+    index_path = root / "control/ARTIFACT_INDEX.json"
+    alternate = root / "control/alternate.json"
+    alternate.write_text(index_path.read_text(encoding="utf-8"), encoding="utf-8")
+    index_path.unlink()
+    index_path.symlink_to(alternate)
+    before = alternate.read_text(encoding="utf-8")
+    index_artifacts(root, [Path("evidence/result.json")])
+    assert not index_path.is_symlink()
+    assert alternate.read_text(encoding="utf-8") == before
+    assert load_json(index_path)["artifacts"]
+
+
+@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
+def test_gate_swap_does_not_create_outside_directories(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    original_write_json = core.write_json
+
+    def swap_before_write(path: Path, value: object, **kwargs: object) -> None:
+        root.rename(tmp_path / "demo-original")
+        root.symlink_to(outside, target_is_directory=True)
+        original_write_json(path, value, **kwargs)
+
+    monkeypatch.setattr(cli, "write_json", swap_before_write)
+    assert main(["gate", str(root), "--reviewer", "reviewer", "--output", "new/nested/result.json"]) == 2
+    assert not (outside / "new").exists()
+
+
 def test_duplicate_gate_ids_are_invalid(tmp_path: Path) -> None:
     root = tmp_path / "demo"
     init_project(root)

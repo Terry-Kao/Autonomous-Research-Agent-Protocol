@@ -68,13 +68,13 @@ def write_json(
         rendered = json.dumps(value, indent=2, sort_keys=True) + "\n"
     except RecursionError as error:
         raise ValueError(f"JSON nesting is too deep to write: {path}") from error
-    path.parent.mkdir(parents=True, exist_ok=True)
     if contained_root_fd is not None:
         if relative_path is None or relative_path.is_absolute() or ".." in relative_path.parts:
             raise ValueError(f"path must be inside project: {path}")
         flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
         directory_fd = os.dup(contained_root_fd)
-        temporary_name = f".{path.name}.{uuid.uuid4().hex}.tmp"
+        destination_name = relative_path.name
+        temporary_name = f".{destination_name}.{uuid.uuid4().hex}.tmp"
         try:
             for component in relative_path.parts[:-1]:
                 try:
@@ -90,7 +90,7 @@ def write_json(
                 handle.write(rendered)
                 handle.flush()
                 os.fsync(handle.fileno())
-            os.replace(temporary_name, path.name, src_dir_fd=directory_fd, dst_dir_fd=directory_fd)
+            os.replace(temporary_name, destination_name, src_dir_fd=directory_fd, dst_dir_fd=directory_fd)
             os.fsync(directory_fd)
         finally:
             try:
@@ -107,6 +107,7 @@ def write_json(
             resolved_parent.relative_to(resolved_root)
         except ValueError as error:
             raise ValueError(f"path must be inside project: {path}") from error
+    path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
