@@ -106,3 +106,14 @@ No private repository was accessed. This entry does not authorize PyPI, broad pr
 
 This gate does not claim human review, external adoption, program eligibility, or permission to publish to PyPI, promote broadly, or submit a Codex for OSS application.
 
+## 2026-10-18 — GitHub Codex exact-head follow-up
+
+**Decision: REVISE pending final exact-head CI and review**
+
+- GitHub Codex reviewed `c69b59610e5f4acd14a4dd77831b0239a5f3207d` and opened two P2 findings: a Python 3.14-dependent deep-write test and a reproduced parent-symlink swap during artifact hashing.
+- The test now injects the serialization failure deterministically.
+- POSIX contained writes now create, fsync and replace the index relative to a securely held no-follow directory descriptor; a hostile regression exchanges `control/` during hashing and verifies that the outside sentinel is unchanged.
+- Windows retains serialize-before-open protection. Windows junction/reparse race hardening remains a stated limitation and is not represented as tested.
+
+The round-two gate is PENDING until the changed head passes the complete CI matrix and exact-head automated re-review.
+

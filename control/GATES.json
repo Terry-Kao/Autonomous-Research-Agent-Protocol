@@ -58,7 +58,7 @@
       "evidence": ["docs/ROUND_TWO_REVIEW.md", "src/arap/core.py", "tests/test_core.py", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/8", "https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/actions/runs/39089728657"],
       "id": "round-two-review-remediation",
       "mandatory": true,
-      "status": "PASS"
+      "status": "PENDING"
     }
   ]
 }

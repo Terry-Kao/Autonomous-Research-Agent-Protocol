@@ -1,9 +1,11 @@
 import json
+import os
 from pathlib import Path
 
 import pytest
 
 import arap
+import arap.core as core
 from arap.cli import init_project
 from arap.cli import main
 from arap.core import evaluate_gates, index_artifacts, load_json, sha256_file, validate_project, write_json
@@ -139,16 +141,49 @@ def test_deeply_nested_json_is_reported_not_raised(tmp_path: Path) -> None:
     assert "JSON nesting is too deep" in errors[0]
 
 
-def test_deeply_nested_json_write_does_not_truncate_existing_file(tmp_path: Path) -> None:
+def test_deeply_nested_json_write_does_not_truncate_existing_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
     path = tmp_path / "index.json"
     original = '{"sentinel": true}\n'
     path.write_text(original, encoding="utf-8")
-    nested: object = 0
-    for _ in range(10_000):
-        nested = [nested]
+    def fail_serialization(*args: object, **kwargs: object) -> str:
+        raise RecursionError("injected nesting failure")
+
+    monkeypatch.setattr(core.json, "dumps", fail_serialization)
     with pytest.raises(ValueError, match="JSON nesting is too deep to write"):
-        write_json(path, nested)
+        write_json(path, {"nested": []})
     assert path.read_text(encoding="utf-8") == original
+
+
+@pytest.mark.skipif(os.name != "posix", reason="secure directory-descriptor semantics are POSIX-specific")
+def test_index_rejects_parent_symlink_swap_during_hashing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    root = tmp_path / "demo"
+    init_project(root)
+    artifact = root / "evidence/result.json"
+    artifact.write_text("{}\n", encoding="utf-8")
+    outside_control = tmp_path / "outside-control"
+    outside_control.mkdir()
+    outside_index = outside_control / "ARTIFACT_INDEX.json"
+    sentinel = '{"sentinel": true}\n'
+    outside_index.write_text(sentinel, encoding="utf-8")
+    original_sha256_file = core.sha256_file
+    swapped = False
+
+    def swap_parent_then_hash(path: Path) -> str:
+        nonlocal swapped
+        if path == artifact.resolve() and not swapped:
+            swapped = True
+            (root / "control").rename(root / "control-original")
+            (root / "control").symlink_to(outside_control, target_is_directory=True)
+        return original_sha256_file(path)
+
+    monkeypatch.setattr(core, "sha256_file", swap_parent_then_hash)
+    with pytest.raises(OSError):
+        index_artifacts(root, [Path("evidence/result.json")])
+    assert outside_index.read_text(encoding="utf-8") == sentinel
 
 
 def test_duplicate_json_keys_are_rejected(tmp_path: Path) -> None:

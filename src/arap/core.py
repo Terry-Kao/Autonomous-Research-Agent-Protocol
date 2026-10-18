@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -39,12 +41,37 @@ def load_json(path: Path) -> Any:
         raise ValueError(f"JSON nesting is too deep: {path}") from error
 
 
-def write_json(path: Path, value: Any) -> None:
+def write_json(path: Path, value: Any, *, contained_root: Path | None = None) -> None:
     try:
         rendered = json.dumps(value, indent=2, sort_keys=True) + "\n"
     except RecursionError as error:
         raise ValueError(f"JSON nesting is too deep to write: {path}") from error
     path.parent.mkdir(parents=True, exist_ok=True)
+    if contained_root is not None and os.name == "posix":
+        resolved_root = contained_root.resolve()
+        resolved_parent = path.parent.resolve()
+        try:
+            resolved_parent.relative_to(resolved_root)
+        except ValueError as error:
+            raise ValueError(f"path must be inside project: {path}") from error
+        flags = os.O_RDONLY | getattr(os, "O_DIRECTORY", 0) | getattr(os, "O_NOFOLLOW", 0)
+        directory_fd = os.open(path.parent, flags)
+        temporary_name = f".{path.name}.{uuid.uuid4().hex}.tmp"
+        try:
+            file_flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+            file_fd = os.open(temporary_name, file_flags, 0o600, dir_fd=directory_fd)
+            with os.fdopen(file_fd, "w", encoding="utf-8", newline="\n") as handle:
+                handle.write(rendered)
+                handle.flush()
+                os.fsync(handle.fileno())
+            os.replace(temporary_name, path.name, src_dir_fd=directory_fd, dst_dir_fd=directory_fd)
+        finally:
+            try:
+                os.unlink(temporary_name, dir_fd=directory_fd)
+            except FileNotFoundError:
+                pass
+            os.close(directory_fd)
+        return
     with path.open("w", encoding="utf-8", newline="\n") as handle:
         handle.write(rendered)
 
@@ -195,7 +222,7 @@ def index_artifacts(root: Path, paths: list[Path], purpose: str = "run evidence"
             "status": "CURRENT",
         }
     result = {"updated_at": utc_now(), "artifacts": sorted(by_path.values(), key=lambda item: item["path"])}
-    write_json(index_path, result)
+    write_json(index_path, result, contained_root=root)
     return result
 
 

@@ -42,3 +42,14 @@ Gemini produced no valid finding or approval. Its failed first response and expl
 - Limitations: Claude did not test Python 3.10 or Windows junction/reparse behavior; GitHub CI provides the Python 3.10 run, while Windows junction coverage remains future hardening.
 
 The round-two remediation gate is PASS for the bounded mandatory findings. Non-blocking hardening remains in issue #10.
+
+## GitHub Codex exact-head follow-up
+
+GitHub Codex reviewed `c69b59610e5f4acd14a4dd77831b0239a5f3207d` and opened two P2 findings before merge. The gate returned to `PENDING` while they were addressed:
+
+1. the deep-write regression depended on an interpreter-specific recursion threshold and failed on Python 3.14.4;
+2. the artifact-index output path could be exchanged for an outside-root parent symlink after its initial resolution and before the write.
+
+The regression now injects `RecursionError` deterministically. On POSIX, contained JSON writes use a no-follow directory descriptor, create and fsync a temporary file relative to that held descriptor, and replace the destination relative to the same descriptor. A hostile test exchanges `control/` during artifact hashing and verifies that the outside index remains unchanged. Windows retains the serialize-before-open behavior; Windows junction/reparse race hardening remains an explicit platform limitation.
+
+Final PASS requires exact-head CI and a fresh exact-head automated review with no unresolved mandatory finding.
