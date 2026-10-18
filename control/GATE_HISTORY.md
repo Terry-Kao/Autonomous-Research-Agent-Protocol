@@ -81,3 +81,64 @@ The remaining authorized sequence is final-head CI confirmation, merge, post-mer
 
 Release gates PASS applies to the alpha release. It does not assert OSS program eligibility or authorize application submission.
 
+## 2026-10-18 — Qualification merge and round-two automated review
+
+**Decision: REVISE pending mandatory remediation and exact-head re-review**
+
+- PR #6 merged as `5d27607746d5f4d9e40b064ee89e836675cef3fe` after an expected-head check; main CI run `39071122579` passed all four jobs.
+- Fresh local verification independently passed 17 tests, repository/example hash validation, the synthetic local-CI handoff, clean wheel/sdist builds, metadata checks, and isolated installs.
+- Claude Code (Opus 5.5, medium reasoning) reviewed a clean public checkout in a fresh cloud container and found three mandatory defects: hostile state shape crash, deeply nested JSON crash, and artifact-index write escape through an outside-root symlink.
+- Gemini Flash-Lite could not access the commit-pinned files. Its initial ungrounded response was rejected and its corrected result is `UNSUPPORTED`, not PASS.
+- Issue #8 records the mandatory findings. Remediation is bounded to code, regression tests, exact-head CI and re-review.
+- Exact-head re-review confirmed the initial three reproductions fail closed, then exposed a remaining deep-JSON serialization path that could truncate an existing index before raising. The same bounded remediation now serializes before opening the destination and preserves the previous file on failure.
+
+No private repository was accessed. This entry does not authorize PyPI, broad promotion, fabricated adoption, or a Codex for OSS submission.
+
+## 2026-10-18 — Round-two remediation verification
+
+**Decision: PASS for the bounded mandatory remediation**
+
+- Remediation head `c69b59610e5f4acd14a4dd77831b0239a5f3207d` passed GitHub Actions run `39089728657`: Python 3.10, 3.11, 3.12 and package jobs.
+- Claude Code exact-head re-review independently ran 23 tests on Python 3.11, 3.12 and 3.13, exercised both Linux symlink tests without skips, rebuilt and checked wheel/sdist artifacts, and completed six isolated installs.
+- ARAP-01, ARAP-02, ARAP-03 and follow-up ARAP-13 are RESOLVED; unresolved mandatory findings: 0; Claude verdict: PASS.
+- The earlier GitHub Codex Python 3.12 portability finding was corrected, verified by two successful CI heads, documented in the review thread, and resolved.
+- Non-blocking hardening remains visible in issue #10. Gemini remains `UNSUPPORTED`, not PASS.
+
+This gate does not claim human review, external adoption, program eligibility, or permission to publish to PyPI, promote broadly, or submit a Codex for OSS application.
+
+## 2026-10-18 — GitHub Codex exact-head follow-up
+
+**Decision: REVISE pending final exact-head CI and review**
+
+- GitHub Codex reviewed `c69b59610e5f4acd14a4dd77831b0239a5f3207d` and opened two P2 findings: a Python 3.14-dependent deep-write test and a reproduced parent-symlink swap during artifact hashing.
+- The test now injects the serialization failure deterministically.
+- POSIX contained writes now create, fsync and replace the index relative to a securely held no-follow directory descriptor; a hostile regression exchanges `control/` during hashing and verifies that the outside sentinel is unchanged.
+- Windows retains serialize-before-open protection. Windows junction/reparse race hardening remains a stated limitation and is not represented as tested.
+
+The round-two gate is PENDING until the changed head passes the complete CI matrix and exact-head automated re-review.
+
+- First remediation CI run `39090194783` preserved a useful failed attempt: packaging passed, while all Python jobs exposed an overly narrow regression assertion that expected only `OSError`; the implementation safely rejected the exchanged parent with `ValueError` before opening it. The test now accepts either fail-closed error and still requires the outside sentinel to remain unchanged.
+- Corrected exact head `f3cc6c5eef665bb722ffdac43d2217b635afe0f6` passed CI run `39090252768` across Python 3.10–3.12 and packaging.
+- Claude Code (Opus 5.5, medium reasoning) re-reviewed that exact head from a clean public clone, ran 24 tests without skips on each Python 3.10–3.14, targeted race and injected-failure probes, clean build/check, and ten isolated installs. Verdict: PASS; mandatory findings: 0.
+- Claude's analogous non-blocking ARAP-14 gate-output race was corrected by applying the same contained write. The atomic file mode now follows the process umask, and the review documents were reconciled. Final exact-head CI and automated review remain required before PASS.
+- GitHub Codex subsequently reproduced root replacement and intermediate-ancestor replacement windows, plus cleanup and crash-durability gaps. POSIX writes now pin the original project root before hashing/evaluation, traverse each ancestor relative to held no-follow descriptors, sync the destination directory after replace, and close descriptors even if cleanup fails. New adversarial tests cover both index and gate output paths.
+- Windows does not use descriptor-relative traversal in this version. Concurrent junction/reparse mutation remains explicitly unsupported and must not be inferred from the ordinary Windows test result; it is retained as non-blocking platform hardening in issue #10.
+- CI run `39091099924` retained another useful failed attempt: packaging passed, while two Linux race tests accepted only successful writes to the pinned original directory. The implementation instead rejected the mutations safely with `ENOTDIR` and `ENOENT`; both outside sentinels remained unchanged. The assertions now allow either safe rejection or a write through the held original descriptor.
+- Claude's final mutation probes found two non-blocking regressions in the root-pinning refactor: a path-based pre-write `mkdir` could create empty directories after a root swap, and an internal symlink at `ARTIFACT_INDEX.json` could redirect the destination filename. The secure path now creates directories only through held descriptors and uses the validated relative destination name; dedicated regressions cover both cases.
+- GitHub Codex exact-head review of `93af14a5adc24c93dfc161e898ff7876c52ea999` found three more P2 edge cases: newly created ancestor entries were not individually synced, a root symlink loop raised an uncontrolled `RuntimeError`, and the non-POSIX fallback still followed an internal index symlink. Parent descriptors are now synced after each `mkdir`, root resolution loops become controlled CLI errors, and the fallback replaces the validated relative index destination without modifying its target.
+- The review request for `0f7ed588114807e84a202d265206911015121802` failed due account review quota; CI `39091884944` passed. The review failure is preserved, not treated as PASS.
+- Terry chose native Windows protection while preserving functionality. Windows writes now use directory handles that deny deletion/rename, reject reparse directories, hold the ancestor chain, and rename the synced temporary file relative to the held parent handle. Local Windows verification: 25 passed, 9 skipped (POSIX or unavailable symlink privileges); the four native handle/junction tests passed. Initial implementation attempts with zero desired access and incompatible rename sharing failed and were corrected before push.
+- The test workflow now covers Windows and Linux with Python 3.10–3.12. Round-two gate remains PENDING until CI and independent review verify this new code.
+- Windows/Linux CI `39107487909` passed all seven jobs at `2bbc6189055c3d2aa4540face29c5d9ccb066565`. Further review of narrow Windows windows replaced path-based child opens with `NtCreateFile` relative to held directory handles, using no-reparse semantics. A single exclusive temporary-file handle is retained through write, flush and rename, eliminating the close/reopen window. Empty-directory in-place reparse and injected rename-failure tests were added. Local result: 28 passed, 9 skipped, including seven native Windows tests.
+- Claude's review of `0f7ed58` returned REVISE for ARAP-17, an overbroad security claim. SECURITY.md now describes protected output writes and explicitly discloses path-based read/snapshot limitations. Native Windows implementation review remains pending; the browser reported a model switch from Opus 5.5 to Opus 4.8, which must be recorded in subsequent review identity.
+
+## 2026-10-18 — Final round-two decision
+
+**Decision: PASS for bounded remediation; pending final evidence-commit CI and merge**
+
+- Reviewed code SHA `4d294aca886c8428793335a5c1465c2af1fadd6c` passed CI `39107670200`, all seven Windows/Linux matrix and packaging jobs.
+- Claude Code, serving `claude-opus-4-8` (medium), independently returned bounded PASS, mandatory 0, from a new clean public checkout. Linux runtime probes/tests/build/install passed; Windows assessment was static, with Windows runtime evidence supplied by local and hosted tests.
+- All GitHub inline threads contain remediation evidence and are resolved. Final GitHub Codex re-review failed due quota; it is preserved as unavailable, not a pass. Gemini remains UNSUPPORTED.
+- Non-blocking work remains in #10. CONTRIBUTING provides public feedback instructions. Genuine external adoption remains unestablished; issue #4 remains reserved for an external contributor.
+- The next Human Gate is formal public introduction/outreach. No PyPI publication, OSS application or broad promotion is authorized by this PASS.
+
