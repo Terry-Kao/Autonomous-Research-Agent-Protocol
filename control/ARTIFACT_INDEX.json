@@ -31,8 +31,8 @@
     {
       "path": "EXTERNAL_FEEDBACK_LOG.md",
       "purpose": "run evidence",
-      "sha256": "e3fb6c4b517e3c74c4c31cfcd81f69ae4b24287cd91fdded34909b2d1979ffbf",
-      "size_bytes": 2119,
+      "sha256": "38a4c7bab069124f05896c52c208b957c54cd672f7fc454f73b5719e9a17d585",
+      "size_bytes": 2625,
       "status": "CURRENT"
     },
     {
@@ -45,15 +45,15 @@
     {
       "path": "PUBLIC_INTRODUCTION.md",
       "purpose": "run evidence",
-      "sha256": "0d8a25e6184925470d01547f0540d4ece3bb7ba712f40a161827cc5f34325661",
-      "size_bytes": 2761,
+      "sha256": "dce1745d2bc7d1d36c0d03ea8df3ffdc18367b69a35a78e4a0129bf1e7d5bc5f",
+      "size_bytes": 2939,
       "status": "CURRENT"
     },
     {
       "path": "README.md",
       "purpose": "run evidence",
-      "sha256": "f6548279566374019748113d3829047b11f1b27e6e8d04aa6225c9d0349eb01f",
-      "size_bytes": 5437,
+      "sha256": "38b7cc312046f7cde4944379387af077113ef9c51d44f9cff3f3bc0186dde7ac",
+      "size_bytes": 7359,
       "status": "CURRENT"
     },
     {
@@ -73,8 +73,8 @@
     {
       "path": "control/GATE_HISTORY.md",
       "purpose": "run evidence",
-      "sha256": "771b2840aae9bb0ca861ccd9851a5eca089bc54376a0969c09fa3bec27aefe1c",
-      "size_bytes": 17447,
+      "sha256": "908bf9fceede290457c3299649db21ce0e3381dc96cf2e97e83a7b14e292cad6",
+      "size_bytes": 17889,
       "status": "CURRENT"
     },
     {
@@ -218,5 +218,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T08:47:52+00:00"
+  "updated_at": "2026-10-23T12:07:28+00:00"
 }
