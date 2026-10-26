@@ -17,7 +17,7 @@ prove offline identity; claims are limited to the observable GitHub evidence.
 
 | Date | Actor | Evidence | AI/bot classification | Status | Adoption interpretation |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-18 | `yuefdev` | [PR #7](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/pull/7), linked to Issue #4 | Contributor disclosed "AI-assisted contribution" | Open; exact-head workflow requires approval and branch is behind current `main` | Verifiable external contributor PR; not independent human review and not yet a merged integration |
+| 2026-10-27 | `yuefdev` | [PR #7](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/pull/7), completing [Issue #4](https://github.com/Terry-Kao/Autonomous-Research-Agent-Protocol/issues/4) | Contributor disclosed AI-assisted follow-up using OpenCode (`gpt-6.1-sol`) | Merged as `e91049cd24108551fbcc1ce1cedeb6b09384f65b` after exact-head CI `39951080937`, maintainer review `5660329017`, and main CI `40418261921` passed; Issue #4 closed | Verifiable external contributor lifecycle completed; not independent human review and not proof of real-world adoption |
 
 ## Public introduction locations
 
@@ -45,7 +45,10 @@ counted as adoption without linked evidence.
 
 ## Current conclusion
 
-At least one verifiable external contributor interaction exists (PR #7).
-Independent external human review and a verified real-world integration remain
-unestablished. Codex for OSS application preparation may use this log as
-evidence, but submission remains a separate maintainer decision.
+PR #7 completed a public, verifiable external contributor lifecycle: reserved
+Issue #4, external fork and PR, maintainer feedback, contributor revision,
+exact-head CI, bounded maintainer review, merge, post-merge CI, and issue closure.
+The contribution was AI-assisted and is not independent human review. A verified
+real-world integration remains unestablished. Codex for OSS application
+preparation may use this log as evidence, but submission remains a separate
+maintainer decision.
