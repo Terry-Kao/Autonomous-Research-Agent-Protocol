@@ -52,8 +52,8 @@
     {
       "path": "README.md",
       "purpose": "run evidence",
-      "sha256": "6520895ee750d2ec934702636f0322d98b85a047ac1a1545327409461605eb78",
-      "size_bytes": 5568,
+      "sha256": "38b7cc312046f7cde4944379387af077113ef9c51d44f9cff3f3bc0186dde7ac",
+      "size_bytes": 7359,
       "status": "CURRENT"
     },
     {
@@ -218,5 +218,5 @@
       "status": "CURRENT"
     }
   ],
-  "updated_at": "2026-10-18T08:53:15+00:00"
+  "updated_at": "2026-10-23T12:07:28+00:00"
 }
